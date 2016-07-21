@@ -1,0 +1,142 @@
+body {
+  background: url('../images/background.jpg') no-repeat fixed;
+  background-size: cover;
+  height: auto;
+  width: auto;
+  font-family: motionPic;
+}
+
+@font-face {
+  font-family: motionPic;
+  src: url("../font/LadybugLoveDemo.ttf");
+}
+
+.container {
+  margin: 50px auto;
+  border-radius: 5px;
+  opacity: 0.9;
+  background: #ECFFDF;
+  width: 420px;
+  padding: 30px;
+  font-size: 19px;
+}
+
+.appname {
+  height: 50px;
+  width: 50px;
+  text-align: left;
+}
+
+.welcome {
+  font-size: 35px;
+  text-align: center;
+}
+
+.signupLink {
+  float: right;
+  font-size: 18px;
+}
+
+.remember {
+  float: left;
+  width: 140px;
+  font-size: 18px;
+}
+
+.forgot {
+  float: right;
+  width: 142px;
+  font-size: 18px;
+  text-align: right;
+}
+
+.loginButtonArea {
+  width: 100px;
+  float: left;
+  text-align: center;
+}
+
+.submitButton {
+  cursor: pointer;
+  background-color: #FFC000;
+  border-radius: 5px;
+  font-family: motionPic;
+}
+
+.loginButton {
+  font-size: 16px;
+  padding: 7% 20%;
+}
+
+.registerButton {
+  font-size: 16px;
+  padding: 2% 8%;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: #000000;
+}
+
+.heading {
+  font-size: 25px;
+}
+
+.goToLogin {
+  text-align: right;
+}
+
+.field {
+  padding: 20px;
+  width: 400px;
+  min-height: 10px;
+}
+
+.inputField {
+  width: 241px;
+  float: right; 
+}
+
+.fieldName {
+  width: 150px;
+  float: left;
+}
+
+.addressField {
+  padding: 5%;
+  width: 400px;
+  height: 90px;
+}
+
+.errorBox {
+  width: 400px;
+  height: 20px;
+  padding: 7px;
+  font-size: 16px;
+  text-align: right;
+  color: #FF0000;
+}
+
+.allignCenter {
+  text-align: center;
+}
+
+.inputFieldSize {
+  padding: 2%;
+  width: 90%;
+  resize: none;
+}
+
+.redBorder {
+  border-color: #FF0000;
+  padding: 2%;
+  width: 90%;
+  resize: none;
+}
+
+.greenBorder {
+  border-color: #32CD32;
+  padding: 2%;
+  width: 90%;
+  resize: none;
+}
