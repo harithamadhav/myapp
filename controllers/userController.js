@@ -32,6 +32,7 @@ function login(req, res) {
     if(data != null) {
       var token = 'token';
       var name = 'name';
+      var uid = 'uid';
       models.foodItemsModel.getHomeData(req).then( function(result) {
         if(result != null) {
           console.log(result);
@@ -44,8 +45,8 @@ function login(req, res) {
           var drinks = [];
           for (var i = 0; i < length; i++) {
             if (result[i].itemtype === 'burger') {
-               burgers[b] = result[i];
-               b = b + 1;
+              burgers[b] = result[i];
+              b = b + 1;
             } else if (result[i].itemtype === 'starter') {
               starters[s] = result[i];
               s = s + 1;
@@ -58,18 +59,17 @@ function login(req, res) {
             var emailCookie = md5(body.email);
             res.cookie( token, 'user');
             res.cookie( name, data.firstName);
-            res.redirect('/user/home');
+            res.cookie( uid, data.id);
+            res.render('user/home', { user : data.firstName, logout : 'Log out', burgers : burgers, starters : starters, drinks : drinks, userData : data});
           } else if (data.userType === 'admin') {
             res.cookie( token, 'admin');
-            res.redirect('/admin/home');
+            res.render('admin/home', { burgers : burgers, starters : starters, drinks : drinks});
           } else {
             res.render('user/login',{
               emailMsg : 'invalid',
               passwordMsg : 'invalid'
-            });
-          
+            });          
           }
-
         }
       });
     }

@@ -2,8 +2,14 @@ var mongoose = require('mongoose');
 var schema = require('../schemas');
 var allOrders = mongoose.model('allorders', schema.allOrders);
 
-var insert = function() {
+var insert = function(req, res, uid, id) {
+  var newOrder = new allOrders({
+    userId : uid,
+    items : {
+      
+    }
 
+  })
 };
 
 var remove = function() {

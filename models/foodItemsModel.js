@@ -48,14 +48,28 @@ var getHomeData = function(req, res) {
   });
 }
 
-var getSearchData = function(req, res) {
-  return foodItems.findAsync().then()
+var getSearchData = function(req, res, text) {
+  return foodItems.findAsync({name : text}).then(function(data) {
+    return data;
+  }, function(err) {
+    console.log('err in search..',err.name);
+    return null;
+  });
 }
 
+var getItem = function(id) {
+  return foodItems.findOneAsync({_id : id}).then(function(data) {
+    return data;
+  }, function(err) {
+    console.log(err.name);
+    return null;
+  });
+}
 var expobj = {
   insert : insert,
   remove : remove,
   update : update,
+  getItem : getItem,
   getHomeData : getHomeData,
   getSearchData : getSearchData
 };

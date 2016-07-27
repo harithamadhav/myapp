@@ -5,19 +5,18 @@
     </title>
     <link href="/images/logo.png" rel="shortcut icon">
     <link rel="stylesheet" href="/stylesheets/home.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/stylesheet.css" type="text/css">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
   <body>
     <div class="homeWrapper">
       <div class="searchBar">
-        <form name="search" method="post" action="/user/search">
-        <span >BURGER</span>
-        <input type="text"/>
-        <input type="submit" name="searchButton">
-          <i class="fa fa-search w3-xlarge"></i>
-        </input>
+        <form name="search" method="post">
+          <span >BURGER</span>
+          <input type="text" name="searchText" />
+          <input type="submit" name="searchButton">
+            <i class="fa fa-search w3-xlarge"></i>
+          </input>
         </form>
       </div>
       <div class="menuBar backgroundSaffron">
@@ -29,8 +28,12 @@
         <div class="menu">
           <span>About us</span>
         </div>
-        <div class="menu"><span>Contact us</span></div>
-        <div class="menu"><span>Policies</span></div>
+        <div class="menu">
+          <span>Contact us</span>
+        </div>
+        <div class="menu">
+          <span>Policies</span>
+        </div>
         <a href="/user/orderSummary">
           <div class="menu floatRight"><i class="fa fa-shopping-cart w3-xlarge"></i></div>
         </a>
@@ -38,22 +41,22 @@
           <div class="menu floatRight">Signup</div>
         </a>
         <div class="menu floatRight"><%= user%><a href="/user/login"><%= logout%></a></div>
-        <div class="fullHeight">
-          <% for (i = 0; i< results.length; i++) {%>
+      </div>
+      <div class="list">
+        <% for (var i = 0; i< results.length; i++) {%>
           <div class="itemHeight">
             <div class="leftFloat largeWidth">
-              <img src="/uploads/<%= results[i].image"/>
+              <img src="/uploads/<%= results[i].image%>"/>
               <div>
-                <span><%= results[i].name + "\n" + results[i].description% + "\n" + results[i].offerDescription></span>
+                <span><%= results[i].name%><br><%=results[i].description%><br><%results[i].offerDescription %></span>
               </div>
             </div>
-            <div class="rightFloat">
-              <span><%= results[i].actualCost + "\n" + results[i].offerCost%></span>
-              <input type="button" name="remove" value="remove" class="submitButton loginButton"/>
+            <div class="floatRight">
+              <span><%= results[i].actualCost%><br> reduced as <%= results[i].offerCost%></span>
             </div>
           </div>
-          <% } %>
-        </div>
+        <% } %>
+      </div>
       </div>
     </div>
   </body>

@@ -62,7 +62,8 @@
 }
 
 .itemHeight {
-  height: 170px;
+  height: 207px;
+  padding: 10px;
 }
 
 .leftFloat {
@@ -87,4 +88,9 @@
 img {
   width: 150px;
   height: 150px;
+}
+
+.list {
+  margin: auto;
+  width: 55%;
 }

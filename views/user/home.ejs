@@ -11,11 +11,13 @@
   <body>
     <div class="homeWrapper">
       <div class="searchBar">
-        <span >BURGER</span>
-        <input type="text" name="searchText"/>
-        <a href="/user/search">
-          <i class="fa fa-search w3-xlarge"></i>
-        </a> 
+        <form name="search" method="post">
+          <span >BURGER</span>
+          <input type="text" name="searchText"/>
+          <input type="submit" name="searchButton">
+            <i class="fa fa-search w3-xlarge"></i>
+          </input>
+        </form> 
       </div>
       <div class="menuBar backgroundSaffron">
         <a href="/user/home">
@@ -58,10 +60,12 @@
             <span>Burgers</span>
           </div>
           <div class="grid">
-          <% for (i = 0; i< burgers.length; i++) {%>
+          <% for (var i = 0; i< burgers.length; i++) {%>
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
-                <img src="/uploads/<%= burgers[i].image%>"/>
+                <a href="/user/description/<%= burgers[i].id%>">
+                  <img src="/uploads/<%= burgers[i].image%>" onclick=""/>
+                </a>
                 <div>
                   <span><%= burgers[i].name + "\n" + burgers[i].description + "\n" + burgers[i].actualCost + "\n" + burgers[i].offerCost %></span>
                 </div>
@@ -79,7 +83,9 @@
           <% for (i = 0; i< starters.length; i++) {%>
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
-                <img src="/images/logo.png"/>
+                <a href="/user/descripton">
+                  <img src="/images/logo.png"/>
+                </a>
                 <div>
                   <span><%= starters[i].name + "/n" + starters[i].description + "/n" + starters[i].actualCost + starters[i].offerCost %></span>
                 </div>
@@ -99,7 +105,7 @@
               <div class="leftFloat largeWidth">
                 <img src="/images/logo.png"/>
                 <div>
-                  <span><%= drinks[i].name + "\n" + drinks[i].description + "\n" + drinks[i].actualcost + "\n" + drinks[i].offercost%></span>
+                  <span><%= drinks[i].name + "\n" + drinks[i].description + "\n" + drinks[i].actualcost + "\n" + drinks[i].offercost%> </span>
                 </div>
               </div>
               <div class="leftFloat smallWidth">

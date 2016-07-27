@@ -4,8 +4,8 @@ var allOrders = new mongoose.Schema({
   { 
     type: String, 
     Default: null, 
-    required: true,
-    unique: true
+  //  required: true,
+  //  unique: true
   },
   userId : 
   { 

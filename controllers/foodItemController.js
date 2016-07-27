@@ -56,17 +56,42 @@ function loadHomePage(req, res, type) {
 }
 
 function search(req, res) {
-  models.foodItemsModel.getSearchData(req, res).then( function(data) {
-    if(data != null) {
-      console.log('search result is...'data);
-      res.render('user/search', { results : results });
+  var text = req.body.searchText;
+  console.log(text);
+  models.foodItemsModel.getSearchData(req, res, text).then( function(results) {
+    if(results != null) {
+      console.log('search result is...', results);
+      res.render('user/search', { user: 'user', logout: 'Log out', results : results });
+    } else {
+      console.log('no results...');
+      res.render('user/search', { results : '' });
     }
   });
+}
+
+function description(req, res, type, name, id) {
+  console.log('in food controller', id);
+  models.foodItemsModel.getItem(id).then( function(result) {
+    if(result != null) {
+      if(type === 'user') {
+        console.log(result);
+        res.render('user/description', { user : name, logout: 'Log out', result : result });
+      } else if(type === 'ADMIN') {
+        res.send('consrtuction pending...');
+      } else {
+        res.render('user/description', { user : 'Guest', logout: '', result : result });
+      }
+    } else {
+      console.log('no results..');
+      res.render('user/description', { result : ''});
+    }
+  })
 }
  
 module.exports = {
   addItem : addItem,
   deleteItem : deleteItem,
   loadHomePage : loadHomePage,
-  search : search
+  search : search,
+  description : description
 };

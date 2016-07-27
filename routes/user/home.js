@@ -16,4 +16,6 @@ router.get('/', function(req, res) {
   }
 });
 
+router.post('/', controller.foodItemController.search);
+
 module.exports = router;
