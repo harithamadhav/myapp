@@ -20,8 +20,6 @@
         <div class="menu"><span>About us</span></div>
         <div class="menu"><span>Contact us</span></div>
         <div class="menu"><span>Policies</span></div>
-        <!-- <div class="menu floatRight"><i class="fa fa-shopping-cart w3-xlarge"></i></div>
-        <div class="menu floatRight">Signup</div> -->
         <div class="menu floatRight">ADMIN<a href="/user/login">Log out</a></div>
       </div>
       <div class="itemContainer">
@@ -42,15 +40,39 @@
           </div>
         </div>
         <div class="itemGrid">
+          
           <div class="itemTitle">
-            <span>Burgers</span>
+            <a href="/admin/addBurger" id="burger">
+              <span>Add Burgers</span>
+            </a>
           </div>
+          <div class="grid">
+          <% for (i = 0; i< burgers.length; i++) {%>
+            <div class="itemHeight leftFloat">
+              <div class="leftFloat largeWidth">
+                <img src="/uploads/<%= burgers[i].image%>"/>
+                <div>
+                  <span><%= burgers[i].description%></span>
+                </div>
+              </div>
+              <div class="leftFloat smallWidth">
+                <i class="fa fa-plus"></i>
+              </div>
+            </div>
+          <% } %>
+          </div>
+          <div class="itemTitle">
+            <a href="/admin/addStarter" id="starter">
+              <span>Add Starters</span>
+            </a>
+          </div>
+          
           <div class="grid">
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
                 <img src="/images/logo.png"/>
                 <div>
-                  <span>Item description</span>
+                  <span><%= starters%></span>
                 </div>
               </div>
               <div class="leftFloat smallWidth">
@@ -59,30 +81,16 @@
             </div>
           </div>
           <div class="itemTitle">
-            <span>Starters</span>
+            <a href="admin/addDrink" id="drinks">
+              <span>Add Drinks and Delights</span>
+            </a>
           </div>
           <div class="grid">
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
                 <img src="/images/logo.png"/>
                 <div>
-                  <span>Item description</span>
-                </div>
-              </div>
-              <div class="leftFloat smallWidth">
-                <i class="fa fa-plus"></i>
-              </div>
-            </div>
-          </div>
-          <div class="itemTitle">
-            <span>Drinks and Delights</span>
-          </div>
-          <div class="grid">
-            <div class="itemHeight leftFloat">
-              <div class="leftFloat largeWidth">
-                <img src="/images/logo.png"/>
-                <div>
-                  <span>Item description</span>
+                  <span><%= drinks%></span>
                 </div>
               </div>
               <div class="leftFloat smallWidth">

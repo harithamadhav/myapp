@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var schema = require('./schemas');
 var routes = require('./routes');
 
+/*var app = express();*/
+
 
 var app = express();
 

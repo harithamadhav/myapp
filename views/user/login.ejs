@@ -2,17 +2,17 @@
 <html>
   <head>
     <title>Login to Burger</title>
-    <link rel="stylesheet" href="stylesheets/stylesheet.css">
-    <link href="images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="/stylesheets/stylesheet.css" type="text/css">
+    <link href="/images/logo.png" rel="shortcut icon">
   </head>
   <body>
     <div class="container">
-      <img class="appname" src="images/logo.png"></img> 
+      <img class="appname" src="/images/logo.png"></img> 
       <div class="signupLink">
-        <a href="signup"> Don't have an account? Sign up! </a>
+        <a href="/user/signup"> Don't have an account? Sign up! </a>
       </div>
       <div>
-        <form name="loginForm"  action="">
+        <form name="loginForm"  action="/user/login" method="post">
           <div class="welcome">
             <span>Welcome Back!</span>
           </div>
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="errorBox">
-            <span id="emailError"></span>
+            <span id="emailError"><%= emailMsg%></span>
           </div>
           <div class="field">
             <div class="fieldName">
@@ -36,14 +36,14 @@
             </div>
           </div>
           <div class="errorBox">
-            <span id="passwordError"></span>
+            <span id="passwordError"><%= passwordMsg%></span>
           </div>
           <div class="field">
             <div class="remember">
               <input type="checkbox" id="checkBox"><label for="checkBox">Remember me</label>
             </div>
             <div class="loginButtonArea">
-              <input type="button" class="submitButton loginButton" onclick="login()" value="Login">
+              <input type="submit" class="submitButton loginButton" onclick="login()" value="Login">
             </div>
             <div class="forgot">
               <a href="#">Forgot password?</a>
@@ -52,6 +52,6 @@
       </form>
       </div>
     </div>
-    <script src="javascripts/validity.js"></script>
+    <script src="/javascripts/validity.js"></script>
   </body>
 </html>

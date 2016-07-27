@@ -7,6 +7,13 @@ var registeredUsers = new mongoose.Schema({
     required: true,
     unique: true 
   },
+  userType :
+  {
+    type: String,
+    enum: ['admin','user'],
+    required: true,
+    Default: 'user'
+  },
   firstName : 
   { 
     type: String, 
@@ -24,7 +31,6 @@ var registeredUsers = new mongoose.Schema({
     type: String, 
     Default: null, 
     required: true,
-    match: /^(([0-9a-zA-Z\!#\$%&'\*\+\-\/\=\?\^_`\{\|\}~("")]+?\.)*[0-9a-zA-Z\!#\$%&'\*\+\-\/\=\?\^_`\{\|\}~("")]+?)@(?:(?:(:?[0-9a-zA-Z\-]+\.)*[0-9a-zA-Z\-]+)|(?:\[.+?\]))$/g,
     unique: true
   },
   password : 

@@ -7,6 +7,13 @@ var foodItems = new mongoose.Schema({
     required: true,
     unique: true
   },
+  itemtype :
+  {
+    type: String,
+    enum: ['burger','starter','drinks'],
+    required: true,
+    Default: null
+  },
   name : 
   { 
     type: String, 
@@ -25,18 +32,24 @@ var foodItems = new mongoose.Schema({
     Default : null, 
     required: true 
   },
-  cost : 
+  offerDescription : 
+  { 
+    type: String, 
+    Default: null, 
+    required: false
+  },
+  actualCost : 
   { 
     type: String, 
     Default: null, 
     required: true 
   },
-  offerDescription : 
+  offerCost : 
   { 
     type: String, 
     Default: null, 
-    required: true 
-  }
+    required: false 
+  },
 });
 
 module.exports = foodItems;

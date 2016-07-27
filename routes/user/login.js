@@ -1,14 +1,17 @@
 var express = require('express');
 var router = express.Router();
+var controller = require('../../controllers');
 //var loginController = "bla";
 
 /* GET home page. */
+
 router.get('/', function(req, res) {
-  res.render('login');
+
+  res.clearCookie('token');
+  res.clearCookie('name');
+  res.render('./user/login',{emailMsg : '', passwordMsg : ''});
 });
-router.post('/', function(req, res) {
-//  return loginController.loginCheck(req.body);  
-});
+router.post('/', controller.userController.login);
 
 module.exports = router;
 

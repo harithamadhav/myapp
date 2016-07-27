@@ -16,7 +16,7 @@ body {
   border-radius: 5px;
   opacity: 0.9;
   background: #ECFFDF;
-  width: 420px;
+  width: 456px;
   padding: 30px;
   font-size: 19px;
 }
@@ -88,7 +88,7 @@ a:link, a:visited {
 
 .field {
   padding: 20px;
-  width: 400px;
+  width: 431px;
   min-height: 10px;
 }
 
@@ -103,9 +103,9 @@ a:link, a:visited {
 }
 
 .addressField {
-  padding: 5%;
-  width: 400px;
-  height: 90px;
+  padding: 20px;
+  width: 431px;
+  height: 196px;
 }
 
 .errorBox {
@@ -139,4 +139,8 @@ a:link, a:visited {
   padding: 2%;
   width: 90%;
   resize: none;
+}
+
+.heightFull {
+  height: 100%;
 }

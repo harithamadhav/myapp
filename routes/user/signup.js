@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var userController = require('../../controllers/userController');
+var controller = require('../../controllers');
 
-/* GET home page. */
 router.get('/', function(req, res) {
   res.render('./user/signup', {
       firstNameMsg : '',
@@ -15,6 +14,6 @@ router.get('/', function(req, res) {
     });
 });
 
-router.post('/', userController.registration);
+router.post('/', controller.userController.registration);
 
 module.exports = router;

@@ -9,25 +9,26 @@ var validEmail = /^(([0-9a-zA-Z\!#\$%&'\*\+\-\/\=\?\^_`\{\|\}~("")]+?\.)*[0-9a-z
 var insert = function(body) {
   if (!validEmail.test(body.email)) {
     var emailMsg = "invalid";
-  } else if (body.email === '') {
+  }
+   if (body.email === '') {
     var emailMsg = "required";
   } else {
     var emailMsg = '';
   }
 
   var hash = null;
-  var confirmPasswordMsg = "";
+  var confirmPasswordMsg = "required";
   if (body.password != body.confirmPassword) {
     var confirmPasswordMsg = "not matching";
     var hash = null;
   } else if (body.password != '') {
     var confirmPasswordMsg = '';
     var hash = md5(body.password);
-    console.log(hash);
   }
   
   var newUser = new users ({
-    userId : 0001,
+    userId : 0010,
+    userType : 'user',
     firstName : body.firstName,
     lastName : body.lastName,
     email : body.email,
@@ -37,57 +38,60 @@ var insert = function(body) {
   });
   
   return newUser.saveAsync().then(function() {
-    var msg = { 
-      firstNameMsg : '',
-      lastNameMsg : '',
-      emailMsg : '',
-      passwordMsg : '',
-      confirmPasswordMsg : '',
-      phoneMsg : '',
-      addressMsg : ''
-    }
+    var msg = null;
+    console.log('success is here..');
     return msg;
   }, function(err) {
-    if (err.errors.hasOwnProperty('firstName')) {
-    var firstNameMsg = err.errors.firstName.kind;
+    console.log(err);
+    if(err.name === 'MongoError'){
+      var msg = { 
+        firstNameMsg : '',
+        lastNameMsg : '',
+        emailMsg : 'already used',
+        passwordMsg : '',
+        confirmPasswordMsg : '',
+        phoneMsg : '',
+        addressMsg : ''
+      }
+      return msg;
     } else {
-    var firstNameMsg = '';
-  }
-    if (err.errors.hasOwnProperty('lastName')) {
-    var lastNameMsg = err.errors.lastName.kind;
-    } else {
-    var lastNameMsg = '';
-  }
-/*    if (err.errors.hasOwnProperty('email')) {  
-    emailMsg = err.errors.email.kind;
-    } else {
-    emailMsg += '';
-  }*/
-    if (err.errors.hasOwnProperty('password')) {
-    var passwordMsg = err.errors.password.kind;
-    } else {
-    var passwordMsg = '';
-  }
-    if (err.errors.hasOwnProperty('phone')) {
-    var phoneMsg = err.errors.phone.kind;
-    } else {
-    var phoneMsg = '';
-  }
-    if (err.errors.hasOwnProperty('address')) {
-    var addressMsg = err.errors.address.kind;
-    } else {
-    var addressMsg = '';
-  }
-    var msg = {
-      firstNameMsg : firstNameMsg,
-      lastNameMsg : lastNameMsg,
-      emailMsg : emailMsg,
-      passwordMsg : passwordMsg,
-      confirmPasswordMsg : confirmPasswordMsg,
-      phoneMsg : phoneMsg,
-      addressMsg : addressMsg
+      
+      if (err.errors.hasOwnProperty('firstName')) {
+      var firstNameMsg = err.errors.firstName.kind;
+      } else {
+      var firstNameMsg = '';
     }
-    return msg;
+      if (err.errors.hasOwnProperty('lastName')) {
+      var lastNameMsg = err.errors.lastName.kind;
+      } else {
+      var lastNameMsg = '';
+    }
+      if (err.errors.hasOwnProperty('password')) {
+      var passwordMsg = err.errors.password.kind;
+      } else {
+      var passwordMsg = '';
+    }
+      if (err.errors.hasOwnProperty('phone')) {
+      var phoneMsg = err.errors.phone.kind;
+      } else {
+      var phoneMsg = '';
+    }
+      if (err.errors.hasOwnProperty('address')) {
+      var addressMsg = err.errors.address.kind;
+      } else {
+      var addressMsg = '';
+    }
+      var msg = {
+        firstNameMsg : firstNameMsg,
+        lastNameMsg : lastNameMsg,
+        emailMsg : emailMsg,
+        passwordMsg : passwordMsg,
+        confirmPasswordMsg : confirmPasswordMsg,
+        phoneMsg : phoneMsg,
+        addressMsg : addressMsg
+      }
+      return msg;
+    }
   });
 }
 
@@ -95,8 +99,28 @@ var update = function() {
 
 };
 
+var login = function(body) {
+  
+  var email = body.email;
+  if (!validEmail.test(body.email)) {
+    var emailMsg = "invalid";
+  } else if (body.email === '') {
+    var emailMsg = "required";
+  } else {
+    var emailMsg = '';
+  }
+  var password = md5(body.password);
+  
+  return users.findOneAsync({'email': email,'password':password}).then(function(result){
+    
+    return result;
+  });
+};
+
 var exportObj = {
   insert : insert,
-  update : update
+  update : update,
+  login : login
 }
+
 module.exports = exportObj;
