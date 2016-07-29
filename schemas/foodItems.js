@@ -40,13 +40,13 @@ var foodItems = new mongoose.Schema({
   },
   actualCost : 
   { 
-    type: String, 
+    type: Number, 
     Default: null, 
     required: true 
   },
   offerCost : 
   { 
-    type: String, 
+    type: Number, 
     Default: null, 
     required: false 
   },

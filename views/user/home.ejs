@@ -73,7 +73,7 @@
           <% for (i = 0; i< starters.length; i++) {%>
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
-                <a href="/user/descripton">
+                <a href="/user/descripton/<%= starters[i].id%>">
                   <img src="/uploads/<%= starters[i].image%>"/>
                 </a>
                 <div>
@@ -90,7 +90,9 @@
           <% for (i = 0; i< drinks.length; i++) {%>
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
-                <img src="/uploads/<%= drinks[i].image%>"/>
+                <a href="/user/description/<%= drinks[i].id%>">
+                  <img src="/uploads/<%= drinks[i].image%>"/>
+                </a>
                 <div>
                   <span><%= drinks[i].name + "\n" + drinks[i].description + "\n" + drinks[i].actualCost + "\n" + drinks[i].offerCost%> </span>
                 </div>

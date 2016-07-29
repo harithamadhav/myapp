@@ -93,7 +93,7 @@ var insert = function(body) {
       return msg;
     }
   });
-}
+};
 
 var update = function() {
 
@@ -117,10 +117,17 @@ var login = function(body) {
   });
 };
 
+var findAddress = function(id) {
+  return users.findOneAsync({_id : id}, {address : 1, _id : 0}).then(function(address) {
+    return address;
+  });
+};
+
 var exportObj = {
   insert : insert,
   update : update,
-  login : login
+  login : login,
+  findAddress : findAddress
 }
 
 module.exports = exportObj;

@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
     controller.foodItemController.loadHomePage(req, res, type);
   } else {
     type = null;
+    res.cookie('uid', null);
     controller.foodItemController.loadHomePage(req, res, type);
   }
 });

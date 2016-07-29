@@ -5,32 +5,25 @@
     </title>
     <link href="/images/logo.png" rel="shortcut icon">
     <link rel="stylesheet" href="/stylesheets/home.css" type="text/css">
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
   <body>
     <div class="homeWrapper">
-      <div class="searchBar">
-        <form name="search" method="post">
-          <span >BURGER</span>
-          <input type="text" name="searchText"/>
-          <input type="submit" name="searchButton"/>
-        </form> 
-      </div>
       <div class="menuBar backgroundSaffron">
-          <div class="menu homeIcon">
-          <a href="/user/home">
-            <img src="/images/home.png" class="icon"/>
-          </a>
-          </div>
+        <a href="/user/home">
+          <div class="menu"><img src="/images/home.png" class="icon"></img></div>
         </a>
         <div class="menu">
           <span>About us</span>
         </div>
         <div class="menu"><span>Contact us</span></div>
         <div class="menu"><span>Policies</span></div>
-        <a href="/user/orderSummary">
-          <div class="menu"><img src="/images/shopping-cart.png" class="icon"/></div>
+        <div class="menu floatRight">
+          <a href="/user/orderSummary">
+            <img src="/images/shopping-cart.png" class="icon"></img>
+          </a>
+        </div>
+        <a href="/user/signup">
+          <div class="menu floatRight">Signup</div>
         </a>
         <div class="menu floatRight"><%= user%><a href="/user/login"><%= logout%></a></div>
       </div>
@@ -43,22 +36,44 @@
                 <span><%= results[i].name%><br><%=results[i].description%><br><%results[i].offerDescription %></span>
               </div>
             </div>
-            <div class="floatRight">
-              <span><%= results[i].actualCost%><br> reduced as <%= results[i].offerCost%></span>
+            <div class="floatRight padding20">
+              <div>
+                <span> Cost </span>
+              </div>
+              <div>
+                <span><%= cost[i]%></span>
+              </div>
             </div>
-            <div class="floatRight">
-              <span>Numbers</span>
-              <span><%= number[i]%></span>
+            <div class="floatRight padding20">
+              <div>
+                <span>Numbers</span>
+              </div>
+              <div>
+                <span><%= number[i]%></span>
+              </div>
             </div>
-            <div class="floatRight">
-              <span> Cost </span>
-              <span><%= cost[i]%></span>
+            <div class="floatRight padding20">
+              <div>
+                <span>Rate :<%= results[i].actualCost%></span>
+              </div>
+              <div>
+                <span>With offer : <%= results[i].offerCost%></span>
+              </div>
             </div>
           </div>
         <% } %>
         <div class="itemHeight centerAllign">
-          <div><span>Total</span></div>
-          <div><span><%= total%></span></div>
+          <div>
+            <span>Total</span>
+          </div>
+          <div>
+            <span><%= total%></span>
+          </div>
+          <div>
+            <form name="checkOut" method="post">
+              <input type="submit" value="Check out"/>
+            </form>
+          </div>
         </div>
       </div>
     </div>
