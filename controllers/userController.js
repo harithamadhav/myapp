@@ -60,10 +60,12 @@ function login(req, res) {
             res.cookie( token, 'user');
             res.cookie( name, data.firstName);
             res.cookie( uid, data.id);
-            res.render('user/home', { user : data.firstName, logout : 'Log out', burgers : burgers, starters : starters, drinks : drinks, userData : data});
+            //res.render('user/home', { user : data.firstName, logout : 'Log out', burgers : burgers, starters : starters, drinks : drinks, userData : data});
+            res.redirect('/user/home');
           } else if (data.userType === 'admin') {
             res.cookie( token, 'admin');
-            res.render('admin/home', { burgers : burgers, starters : starters, drinks : drinks});
+            //res.render('admin/home', { burgers : burgers, starters : starters, drinks : drinks});
+            res.redirect('/admin/home');
           } else {
             res.render('user/login',{
               emailMsg : 'invalid',

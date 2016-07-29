@@ -144,3 +144,12 @@ a:link, a:visited {
 .heightFull {
   height: 100%;
 }
+
+.shop {
+  content: "\f07a";
+  font-size: 15px;
+}
+
+.lessHeight {
+  height: 110px;
+}

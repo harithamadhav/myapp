@@ -60,8 +60,15 @@ function search(req, res) {
   console.log(text);
   models.foodItemsModel.getSearchData(req, res, text).then( function(results) {
     if(results != null) {
-      console.log('search result is...', results);
-      res.render('user/search', { user: 'user', logout: 'Log out', results : results });
+      if(req.cookies.token === 'user') {
+        var name = req.cookies.name;
+        console.log('search result is...', results);
+        res.render('user/search', { user: name, logout: 'Log out', results : results });
+      } else if(req.cookies.token === 'admin') {
+        res.render('user/search', { user: 'ADMIN', logout: 'Log out', results : results });
+      } else {
+        res.render('user/search', { user : 'Guest', logout : '', results : results});
+      }
     } else {
       console.log('no results...');
       res.render('user/search', { results : '' });

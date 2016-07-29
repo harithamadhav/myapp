@@ -11,8 +11,8 @@ var insert = function(req) {
   }
 
   var newFood = new foodItems ({
-    foodId : 0003,
-    itemtype : 'burger',
+    foodId : 0004,
+    itemtype : req.body.select,
     name : req.body.itemName,
     image : fileName,
     description : req.body.itemDescription,
@@ -58,18 +58,30 @@ var getSearchData = function(req, res, text) {
 }
 
 var getItem = function(id) {
-  return foodItems.findOneAsync({_id : id}).then(function(data) {
+  return foodItems.findOneAsync( {_id : id} ).then(function(data) {
     return data;
   }, function(err) {
     console.log(err.name);
     return null;
   });
 }
+
+var getOrderSummary = function(orders){
+  return foodItems.findAsync( {_id : {$in: orders}} ).then(function(data) {
+    console.log(data);
+    return data;
+  }, function (err) {
+    console.log(ree.name);
+    return null;
+  });
+}
+
 var expobj = {
   insert : insert,
   remove : remove,
   update : update,
   getItem : getItem,
+  getOrderSummary : getOrderSummary,
   getHomeData : getHomeData,
   getSearchData : getSearchData
 };

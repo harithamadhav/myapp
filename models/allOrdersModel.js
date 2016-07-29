@@ -3,13 +3,15 @@ var schema = require('../schemas');
 var allOrders = mongoose.model('allorders', schema.allOrders);
 
 var insert = function(req, res, uid, id) {
-  var newOrder = new allOrders({
-    userId : uid,
-    items : {
-      
-    }
-
-  })
+  var oid = req.cookies.oid;
+  if(oid === 'null') {
+    var newOrder = new allOrders({
+      userId : uid,
+      items : {
+        
+      }
+    });
+  }
 };
 
 var remove = function() {

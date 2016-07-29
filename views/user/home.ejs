@@ -5,8 +5,6 @@
     </title>
     <link href="/images/logo.png" rel="shortcut icon">
     <link rel="stylesheet" href="/stylesheets/home.css" type="text/css">
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
   <body>
     <div class="homeWrapper">
@@ -14,25 +12,23 @@
         <form name="search" method="post">
           <span >BURGER</span>
           <input type="text" name="searchText"/>
-          <input type="submit" name="searchButton">
-            <i class="fa fa-search w3-xlarge"></i>
-          </input>
+          <input type="submit" name="searchButton"/>
         </form> 
       </div>
       <div class="menuBar backgroundSaffron">
         <a href="/user/home">
-          <div class="menu homeIcon">
-            <i class="fa fa-home w3-xxlarge"></i>
-          </div>
+          <div class="menu"><img src="/images/home.png" class="icon"></img></div>
         </a>
         <div class="menu">
           <span>About us</span>
         </div>
         <div class="menu"><span>Contact us</span></div>
         <div class="menu"><span>Policies</span></div>
-        <a href="/user/orderSummary">
-          <div class="menu floatRight"><i class="fa fa-shopping-cart w3-xlarge"></i></div>
-        </a>
+        <div class="menu floatRight">
+          <a href="/user/orderSummary">
+            <img src="/images/shopping-cart.png" class="icon"></img>
+          </a>
+        </div>
         <a href="/user/signup">
           <div class="menu floatRight">Signup</div>
         </a>
@@ -48,9 +44,6 @@
                 <div>
                   <span>Item description</span>
                 </div>
-              </div>
-              <div class="leftFloat smallWidth">
-                <i class="fa fa-plus"></i>
               </div>
             </div>
           </div>
@@ -70,9 +63,6 @@
                   <span><%= burgers[i].name + "\n" + burgers[i].description + "\n" + burgers[i].actualCost + "\n" + burgers[i].offerCost %></span>
                 </div>
               </div>
-              <div class="leftFloat smallWidth">
-                <i class="fa fa-plus"></i>
-              </div>
             </div>
           <% } %>
           </div>
@@ -84,14 +74,11 @@
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
                 <a href="/user/descripton">
-                  <img src="/images/logo.png"/>
+                  <img src="/uploads/<%= starters[i].image%>"/>
                 </a>
                 <div>
                   <span><%= starters[i].name + "/n" + starters[i].description + "/n" + starters[i].actualCost + starters[i].offerCost %></span>
                 </div>
-              </div>
-              <div class="leftFloat smallWidth">
-                <i class="fa fa-plus"></i>
               </div>
             </div>
           <% } %>
@@ -103,13 +90,10 @@
           <% for (i = 0; i< drinks.length; i++) {%>
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
-                <img src="/images/logo.png"/>
+                <img src="/uploads/<%= drinks[i].image%>"/>
                 <div>
-                  <span><%= drinks[i].name + "\n" + drinks[i].description + "\n" + drinks[i].actualcost + "\n" + drinks[i].offercost%> </span>
+                  <span><%= drinks[i].name + "\n" + drinks[i].description + "\n" + drinks[i].actualCost + "\n" + drinks[i].offerCost%> </span>
                 </div>
-              </div>
-              <div class="leftFloat smallWidth">
-                <i class="fa fa-plus"></i>
               </div>
             </div>
           <% } %>

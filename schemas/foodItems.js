@@ -10,7 +10,7 @@ var foodItems = new mongoose.Schema({
   itemtype :
   {
     type: String,
-    enum: ['burger','starter','drinks'],
+    enum: ['burger','starter','drink','top'],
     required: true,
     Default: null
   },

@@ -11,16 +11,16 @@
   <body>
     <div class="homeWrapper">
       <div class="searchBar">
-        <span >BURGER</span>
-        <input type="text"/>
-        <a href="userSession">
-          <i class="fa fa-search w3-xlarge"></i>
-        </a>
+        <form name="search" method="post">
+          <span >BURGER</span>
+          <input type="text" name="searchText"/>
+          <input type="submit" name="searchButton"/>
+        </form> 
       </div>
       <div class="menuBar backgroundSaffron">
           <div class="menu homeIcon">
           <a href="/user/home">
-            <i class="fa fa-home w3-xxlarge"></i>
+            <img src="/images/home.png" class="icon"/>
           </a>
           </div>
         </a>
@@ -30,22 +30,35 @@
         <div class="menu"><span>Contact us</span></div>
         <div class="menu"><span>Policies</span></div>
         <a href="/user/orderSummary">
-          <div class="menu floatRight"><i class="fa fa-shopping-cart w3-xlarge"></i></div>
+          <div class="menu"><img src="/images/shopping-cart.png" class="icon"/></div>
         </a>
         <div class="menu floatRight"><%= user%><a href="/user/login"><%= logout%></a></div>
       </div>
-      <div class="fullHeight">
-        <div class="itemHeight">
-          <div class="leftFloat largeWidth">
-            <img src="/images/logo.png"/>
-            <div>
-              <span>Item description</span>
+      <div class="list">
+        <% for (var i = 0; i< results.length; i++) {%>
+          <div class="itemHeight">
+            <div class="leftFloat largeWidth">
+              <img src="/uploads/<%= results[i].image%>"/>
+              <div>
+                <span><%= results[i].name%><br><%=results[i].description%><br><%results[i].offerDescription %></span>
+              </div>
+            </div>
+            <div class="floatRight">
+              <span><%= results[i].actualCost%><br> reduced as <%= results[i].offerCost%></span>
+            </div>
+            <div class="floatRight">
+              <span>Numbers</span>
+              <span><%= number[i]%></span>
+            </div>
+            <div class="floatRight">
+              <span> Cost </span>
+              <span><%= cost[i]%></span>
             </div>
           </div>
-          <div class="floatRight">
-            <span>paythis..!!</span>
-            <input type="button" name="remove" value="remove" class="submitButton loginButton"/>
-          </div>
+        <% } %>
+        <div class="itemHeight centerAllign">
+          <div><span>Total</span></div>
+          <div><span><%= total%></span></div>
         </div>
       </div>
     </div>
