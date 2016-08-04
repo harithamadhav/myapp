@@ -181,7 +181,8 @@ var update = function(req, res, id, callback) {
   } else {
     var addressMsg = '';
   }
-  if(req.body.firstName != '' && req.body.lastName != '' && req.body.email != '' && req.body.password != '' && req.body.confirmPassword != '' && req.body.phone != '' && req.body.permanentAddress != '' && req.body.confirmPassword === req.body.password) {
+
+  if(req.body.firstName != '' && req.body.lastName != '' && req.body.email != '' && validEmail.test(req.body.email) && req.body.password != '' && req.body.confirmPassword != '' && req.body.phone != '' && req.body.permanentAddress != '' && req.body.confirmPassword === req.body.password) {
     users.updateAsync( 
     { "_id" : ObjectId(id) },
     {
@@ -193,7 +194,7 @@ var update = function(req, res, id, callback) {
       phone : req.body.phone,
       address : req.body.permanentAddress
     },
-    { upsert : 1}).then( function(updated) {
+    { upsert : 1}).then( function() {
       callback(null);
     });
   } else {

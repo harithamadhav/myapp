@@ -122,12 +122,12 @@ function updateProfile(req, res) {
           phoneMsg : ret.phoneMsg,
           addressMsg : ret.addressMsg,
           user : {  
-                    firstName : req.body.firstName,
-                    lastName : req.body.lastName,
-                    email : req.body.email,
-                    phone : req.body.phone,
-                    address : req.body.permanentAddress
-                  }
+            firstName : req.body.firstName,
+            lastName : req.body.lastName,
+            email : req.body.email,
+            phone : req.body.phone,
+            address : req.body.permanentAddress
+          }
         });
       }
     });
