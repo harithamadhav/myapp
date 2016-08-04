@@ -4,6 +4,7 @@ body {
   height: auto;
   width: auto;
   font-family: motionPic;
+  font-size: 15px;
 }
 
 @font-face {
@@ -18,7 +19,7 @@ body {
   background: #ECFFDF;
   width: 456px;
   padding: 30px;
-  font-size: 19px;
+  font-size: 15px;
 }
 
 .appname {
@@ -34,19 +35,19 @@ body {
 
 .signupLink {
   float: right;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .remember {
   float: left;
   width: 140px;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .forgot {
   float: right;
   width: 142px;
-  font-size: 18px;
+  font-size: 15px;
   text-align: right;
 }
 
@@ -64,12 +65,12 @@ body {
 }
 
 .loginButton {
-  font-size: 16px;
+  font-size: 15px;
   padding: 7% 20%;
 }
 
 .registerButton {
-  font-size: 16px;
+  font-size: 15px;
   padding: 2% 8%;
 }
 
@@ -79,7 +80,7 @@ a:link, a:visited {
 }
 
 .heading {
-  font-size: 25px;
+  font-size: 19px;
 }
 
 .goToLogin {
@@ -105,14 +106,14 @@ a:link, a:visited {
 .addressField {
   padding: 20px;
   width: 431px;
-  height: 196px;
+  height: 75px;
 }
 
 .errorBox {
   width: 400px;
   height: 20px;
   padding: 7px;
-  font-size: 16px;
+  font-size: 14px;
   text-align: right;
   color: #FF0000;
 }

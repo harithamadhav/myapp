@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>
+      Burger
+    </title>
+    <link href="/images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="/stylesheets/home.css" type="text/css">
+  </head>
+  <body>
+    <div class="homeWrapper">
+      <div class="menuBar backgroundSaffron">
+        <% include menubar %>
+      </div>
+      <div class="list">
+      <div class="addressField">
+        <form method="post" name="confirmAdderss">
+        <span class="fieldName">Delivery Address</span>
+          <div class="inputField">
+            <textarea name="deliveryAddress" cols=20 rows=6 class="inputFieldSize"><%= address%></textarea>
+          </div>
+        </div>
+      </div> 
+      <div>
+          <input type="submit" class="button" value="OK">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

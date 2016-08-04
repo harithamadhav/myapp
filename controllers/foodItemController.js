@@ -2,22 +2,18 @@ var models = require('../models');
 function addItem(req, res) {
   var body = req.body;
   var files = req.file;
-  console.log(body);
-  console.log('reached here in food controller.............');
   models.foodItemsModel.insert(req).then( function(data) {
     if(data != null){
-      console.log(data);
-      res.send('Some required fields are empty');
+      res.render('./admin/addItem', {typeMsg : data.typeMsg, itemNameMsg : data.itemNameMsg, imageMsg : data.imageMsg, costMsg : data.costMsg});
     } else {
       res.redirect('/admin/home');
     }
-  })
+  });
 }
 
 function loadHomePage(req, res, type) {
   models.foodItemsModel.getHomeData(req).then( function(data) {
     if(data != null){
-      console.log(data);
       var length = data.length;
       var b = 0;
       var d = 0;
@@ -58,12 +54,10 @@ function loadHomePage(req, res, type) {
 
 function search(req, res) {
   var text = req.body.searchText;
-  console.log(text);
   models.foodItemsModel.getSearchData(req, res, text).then( function(results) {
     if(results != null) {
       if(req.cookies.token === 'user') {
         var name = "Hi," + req.cookies.name + " ";
-        console.log('search result is...', results);
         res.render('user/search', { user: name, logout: 'Log out', results : results });
       } else if(req.cookies.token === 'admin') {
         res.render('user/search', { user: 'ADMIN ', logout: 'Log out', results : results });
@@ -71,18 +65,15 @@ function search(req, res) {
         res.render('user/search', { user : 'Hi,Guest ', logout : 'Log in', results : results});
       }
     } else {
-      console.log('no results...');
       res.render('user/search', { results : '' });
     }
   });
 }
 
 function description(req, res, type, name, id) {
-  console.log('in food controller', id);
   models.foodItemsModel.getItem(id).then( function(result) {
     if(result != null) {
       if(type === 'user') {
-        console.log(result);
         var name = "Hi," + req.cookies.name + " ";
         res.render('user/description', { user : name, logout: 'Log out', result : result });
       } else if(type === 'admin') {
@@ -91,7 +82,6 @@ function description(req, res, type, name, id) {
         res.render('user/description', { user : 'Hi,Guest ', logout: 'Log in', result : result });
       }
     } else {
-      console.log('no results..');
       res.render('user/description', { result : ''});
     }
   });
@@ -114,8 +104,6 @@ function loadAllItems(req, res) {
 function deleteItem(req, res, id) {
   models.foodItemsModel.remove(id).then( function (effect) {
     if(effect != null) {
-      console.log('deleted', id);
-      console.log('remove returned...', effect);
       loadAllItems(req, res);
     }
   });
@@ -125,19 +113,27 @@ function editItem(req, res) {
   var id = req.params.id;
   models.foodItemsModel.getItem(id).then(function (result) {
     if(result != null) {
-      res.render('admin/editItem', { item : result });
+      res.render('admin/editItem', { item : result, itemNameMsg : '', costMsg : '' });
     }
-  })
+  });
 }
 
 function update(req, res) {
-  var id = req.params.id;
-  models.fooditemsModel.update(id).then(function (result) {
-    if(result != null) {
-      console.log(result);
+  models.foodItemsModel.update(req, function (msg) {
+    if(msg === null) {
       res.redirect('/admin/home');
     } else {
-      res.send('some fields are empty..');
+      res.render('admin/editItem', { 
+        item : {
+          name : req.body.itemName,
+          description : req.body.itemDescription,
+          offerDescription : req.body.offerDescription,
+          actualCost : req.body.actualCost,
+          offerCost : req.body.offerCost
+        },
+        itemNameMsg : msg.itemNameMsg,
+        costMsg  : msg.costMsg,
+      });
     }
   });
 }

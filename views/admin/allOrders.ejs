@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>
+      Burger
+    </title>
+    <link href="/images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="/stylesheets/home.css" type="text/css">
+  </head>
+  <body>
+    <div class="homeWrapper">
+      <div class="menuBar backgroundSaffron">
+        <% include menubar %>
+      </div>
+      <div class="centerBox">
+        <table border="5">
+          <tr>
+            <td>Customer</td>
+            <td>Orders</td>
+            <td>Numbers</td>
+            <td>Costs</td>
+            <td>Total</td>
+            <td>Delivery address</td>
+          </tr>
+          <% for (var i = 0; i< orders.length; i++) { %>
+          <tr>
+            <td><%= orders[i].userName %></td>
+            <td>
+              <% for (var j=0; j< orders[i].items.length; j++) { %>
+                <%= orders[i].items[j] %><br>
+              <% } %>
+            </td>
+            <td>
+              <% for (var j=0; j< orders[i].numbers.length; j++) { %>
+                <%= orders[i].numbers[j] %><br>
+              <% } %>
+            </td>
+            <td>
+              <% for (var j=0; j< orders[i].costs.length; j++) { %>
+                <%= orders[i].costs[j] %><br>
+              <% } %>
+            </td>
+            <td><%= orders[i].total %></td>
+            <td><%= orders[i].address %></td>
+          </tr>
+          <% } %>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

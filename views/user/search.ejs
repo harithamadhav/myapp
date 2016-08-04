@@ -11,35 +11,12 @@
       <div class="searchBar">
         <form name="search" method="post">
           <span >BURGER</span>
-          <input type="text" name="searchText" />
-          <input type="submit" name="searchButton"/>
+          <input type="text" name="searchText"/>
+          <input type="submit" name="searchButton" class="button" value="Search"/>
         </form>
       </div>
       <div class="menuBar backgroundSaffron">
-        <a href="/user/home">
-          <div class="menu">
-            <img src="/images/home.png" class="icon"></img>
-          </div>
-        </a>
-        <div class="menu">
-          <span>About us</span>
-        </div>
-        <div class="menu">
-          <span>Contact us</span>
-        </div>
-        <div class="menu">
-          <span>Policies</span>
-        </div>
-        <a href="/user/orderSummary">
-          <div class="menu floatRight">
-            <img src="/images/shopping-cart.png" class="icon"></img>
-          </div>
-        </a>
-        <a href="/user/signup">
-          <div class="menu floatRight">Signup</div>
-        </a>
-        <a href="/user/profile"><div class="menu floatRight"><%= user%></div></a>
-        <a href="/user/login"><div class="menu floatRight"><%= logout%></div></a>
+        <% include menubar %>
       </div>
       <div class="list">
         <% for (var i = 0; i< results.length; i++) {%>
@@ -51,7 +28,8 @@
               </div>
             </div>
             <div class="floatRight">
-              <span><%= results[i].actualCost%><br> reduced as <%= results[i].offerCost%></span>
+              <span>Cost : <%= results[i].actualCost%></span><br>
+              <span>Get it for : <%= results[i].offerCost%></span>
             </div>
           </div>
         <% } %>

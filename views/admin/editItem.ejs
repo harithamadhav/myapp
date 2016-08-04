@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>
+      Burger
+    </title>
+    <link href="/images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="/stylesheets/home.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="homeWrapper">
+      <div class="menuBar backgroundSaffron">
+        <% include menubar %>
+      </div>
+      <div class="centerBox">
+        <div class="itemTitle">
+          <span>Add Burgers</span>
+        </div>
+        <form name="additemform" id="add" method="post">
+          <div class="field">
+            <span class="fieldName">Name</span>
+            <div class="inputField">
+              <input type="text" name="itemName" class="inputFieldSize" value="<%= item.name%>"/>
+            </div>
+          </div>
+          <div class="errorBox">
+            <span><%= itemNameMsg %></span> 
+          </div>
+          <div class="addressField lessHeight">
+            <span class="fieldName">Description</span>
+            <div class="inputField">
+              <textarea name="itemDescription" cols=20 rows=6 class="inputFieldSize"><%= item.description%></textarea>
+            </div>
+          </div>
+          <div class="addressField lessHeight">
+            <span class="fieldName">Offer description</span>
+            <div class="inputField">
+              <textarea name="offerDescription" cols=20 rows=6 class="inputFieldSize"><%= item.offerDescription%></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <span class="fieldName">Actual cost</span>
+            <div class="inputField">
+              <input type="text" name="actualCost" class="inputFieldSize" value="<%= item.actualCost%>"/>
+            </div>
+          </div>
+          <div class="errorBox">
+            <span><%= costMsg %></span> 
+          </div>
+          <div class="field">
+            <span class="fieldName">Offer cost</span>
+            <div class="inputField">
+              <input type="text" name="offerCost" class="inputFieldSize" value="<%= item.offerCost%>"/>
+            </div>
+          </div>
+          <div class="field centerAllign">
+            <input type="submit" name="edit" class="button" value="Edit"/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

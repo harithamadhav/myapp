@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>
+      Burger
+    </title>
+    <link href="/images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="/stylesheets/home.css" type="text/css">
+  </head>
+  <body>
+    <div class="homeWrapper">
+      <div class="menuBar backgroundSaffron">
+        <% include menubar %>
+      </div>
+      <div class="centerBox">
+        <table border="5">
+          <tr>
+            <td>Item name</td>
+            <td>Type</td>
+            <td>Cost</td>
+            <td>Click to delete</td>
+          </tr>
+          <% for (var i = 0; i< items.length; i++) { %>
+          <tr>
+            <td><%= items[i].name%></td>
+            <td><%= items[i].itemtype%></td>
+            <td><%= items[i].offerCost%></td>
+            <td><a href="/admin/allItems/<%= items[i].id%>">remove</a></td>
+          </tr>
+          <% } %>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

@@ -12,24 +12,13 @@
         <form name="search" method="post">
           <span >BURGER</span>
           <input type="text" name="searchText"/>
-          <input type="submit" name="searchButton"/>
+          <input type="submit" class="button" name="searchButton" value="Search"/>
         </form> 
       </div>
       <div class="menuBar backgroundSaffron">
-        <a href="/admin/home">
-          <div class="menu"><img src="/images/home.png" class="icon"></img></div>
-        </a>
-        <div class="menu">
-          <span>About us</span>
-        </div>
-        <div class="menu"><span>Contact us</span></div>
-        <div class="menu"><span>Policies</span></div>
-        <a href="/user/login"><div class="menu floatRight">ADMIN Log out</div></a>
-        <a href="/admin/addItem"><div class="menu floatRight">Add Item</div></a>
-        <a href="/admin/allItems"><div class="menu floatRight">View all Items</div></a>
-        <a href="/admin/allOrders"><div class="menu floatRight">View all Orders</div></a>
+        <% include menubar %>
       </div>
-      <div class>
+      <div class="homeWrapper">
         <div class="topOffer">
           <div class="itemTitle"><span>Today's top offers</span></div>
           <% for (var i = 0; i< tops.length; i++) {%>

@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>
+      Burger
+    </title>
+    <link href="/images/logo.png" rel="shortcut icon">
+    <link rel="stylesheet" href="/stylesheets/home.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/stylesheet.css" type="text/css">
+  </head>
+  <body>
+    <div class="homeWrapper">
+      <div class="menuBar backgroundSaffron">
+        <% include menubar %>
+      </div>
+      <div class="centerBox">
+        <div class="itemTitle">
+          <span>Add Items</span>
+        </div>
+        <form name="additemform" action="/admin/addItem" id="add" method="post" enctype="multipart/form-data">
+          <div class="field">
+            <span class="fieldName">Type</span>
+            <div class="inputField">
+              <select name="select" class="button">
+                <option selected disabled>Choose here</option>
+                <option value="burger">Burger</option>
+                <option value="starter">Starter</option>
+                <option value="drink">Drinks and Delights</option>
+                <option value="top">Top Offers</option>
+              </select>
+            </div>
+          </div>
+          <div class="errorBox">
+            <span><%= typeMsg %></span> 
+          </div>
+          <div class="field">
+            <span class="fieldName">Name</span>
+            <div class="inputField">
+              <input type="text" name="itemName" class="inputFieldSize"/>
+            </div>
+          </div>
+          <div class="errorBox">
+            <span><%= itemNameMsg %></span> 
+          </div>
+          <div class="field">
+            <span class="fieldName">Image</span>
+            <div class="inputField">
+              <input type="file" name="itemImage" class="inputFieldSize"/>
+            </div>
+          </div>
+          <div class="errorBox">
+            <span><%= imageMsg %></span> 
+          </div>
+          <div class="addressField lessHeight">
+            <span class="fieldName">Description</span>
+            <div class="inputField">
+              <textarea name="itemDescription" cols=20 rows=6 class="inputFieldSize"></textarea>
+            </div>
+          </div>
+          <div class="addressField lessHeight">
+            <span class="fieldName">Offer description</span>
+            <div class="inputField">
+              <textarea name="offerDescription" cols=20 rows=6 class="inputFieldSize"></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <span class="fieldName">Actual cost</span>
+            <div class="inputField">
+              <input type="text" name="actualCost" class="inputFieldSize"/>
+            </div>
+          </div>
+          <div class="errorBox">
+            <span><%= costMsg %></span> 
+          </div>
+          <div class="field">
+            <span class="fieldName">Offer cost</span>
+            <div class="inputField">
+              <input type="text" name="offerCost" class="inputFieldSize"/>
+            </div>
+          </div>
+          <div class="field centerAllign">
+            <input type="submit" name="add" class="button" value=" Add "/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

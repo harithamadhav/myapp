@@ -33,13 +33,13 @@ var foodItems = new mongoose.Schema({
   },
   actualCost : 
   { 
-    type: Number, 
+    type: String, 
     Default: null, 
     required: true 
   },
   offerCost : 
   { 
-    type: Number, 
+    type: String, 
     Default: null, 
     required: false 
   },

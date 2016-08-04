@@ -2,6 +2,7 @@ body {
   height: auto;
   width: auto;
   font-family: motionPic;
+  font-size: 15px;
 }
 
 @font-face {
@@ -64,6 +65,11 @@ body {
   width: 80%;
   height: 100%;
   float: left;
+  overflow-y: scroll;
+}
+
+body::-webkit-scrollbar { 
+  display: none; 
 }
 
 .itemTitle {
@@ -115,9 +121,10 @@ img {
   height: 35px;
 }
 
-.addItemBox {
+.centerBox {
   margin: auto;
   width: 540px;
+  padding: 15px;
 }
 
 .padding20 {
@@ -130,9 +137,23 @@ img {
 
 table {
   border: 3px;
+  text-align: center;
+  padding: 5px;
+}
+
+tr, td {
+  padding: 5px;
 }
 
 a:link, a:visited {
   text-decoration: none;
   color: #000000;
+}
+
+.button {
+  font-family: motionPic;
+  cursor: pointer;
+  background-color: #FFC000;
+  font-size: 15px;
+  padding: 3px;
 }

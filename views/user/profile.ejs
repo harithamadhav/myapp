@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit profile</title>
+    <link rel="stylesheet" href="/stylesheets/stylesheet.css" type="text/css">
+    <link href="/images/logo.png" rel="shortcut icon">
+  </head>
+  <body>
+    <div class="container">
+      <form name="editForm" id="reg" method="post">
+        <div class="field">
+          <span class="fieldName">First Name</span>
+          <div class="inputField">
+            <input type="text" name="firstName" class="inputFieldSize" value="<%= user.firstName%>"/>
+          </div>
+        </div>
+        <div class="errorBox">
+          <span id="firstNameError"><%= firstNameMsg %></span> 
+        </div>
+        <div class="field">
+          <span class="fieldName">Last Name</span>
+          <div class="inputField">
+            <input type="text" name="lastName" class="inputFieldSize" value="<%= user.lastName%>"/>
+          </div>
+        </div>
+        <div class="errorBox">
+          <span id="lastNameError"><%= lastNameMsg%></span>
+        </div>
+        <div class="field">
+          <span class="fieldName">Email</span>
+          <div class="inputField">
+            <input type="text" name="email" class="inputFieldSize" value="<%= user.email%>"/>
+          </div>
+        </div>
+        <div class="errorBox">
+          <span id="emailError"><%= emailMsg%></span>
+        </div>
+        <div class="field">
+          <span class="fieldName">Password</span>
+          <div class="inputField"> 
+            <input type="password" name="password" class="inputFieldSize" placeholder="Atleast one num & char, length:8+"/>
+          </div>
+        </div>
+        <div class="errorBox">
+          <span id="passwordError"><%= passwordMsg%></span>
+        </div>
+        <div class="field">
+          <span class="fieldName">Confirm password</span>
+          <div class="inputField">
+            <input type="password" name="confirmPassword" class="inputFieldSize" placeholder="Enter same password as above" />
+          </div>
+        </div>
+        <div class="errorBox">
+          <span id="confirmPasswordError"><%= confirmPasswordMsg%></span>
+        </div>
+        <div class="field">
+          <span class="fieldName">Phone</span>
+          <div class="inputField">
+            <input type="text" name="phone" class="inputFieldSize" onblur="phoneSplit()" placeholder="Enter phone number" value="<%= user.phone%>"/>
+          </div>
+        </div>
+        <div class="errorBox">
+          <span id="phoneError"><%= phoneMsg%></span>
+        </div>
+        <div class="addressField">
+          <span class="fieldName">Delivery address</span>
+          <div class="inputField">
+            <textarea name="permanentAddress" cols=20 rows=6 class="inputFieldSize"><%= user.address%></textarea>
+          </div>
+        </div>
+        <div class="errorBox">
+          <span id="permanentAddressError"><%= addressMsg%></span>
+        </div>
+        <div class="field">
+          <div class="allignCenter">
+            <input type="submit" class="submitButton registerButton" onclick="register()" id="regi" name="sub" value="Submit"/>
+          </div>
+        </div>
+      </form>
+    </div>
+   <script src="/javascripts/validity.js"></script>
+  </body>
+</html>

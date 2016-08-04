@@ -39,10 +39,8 @@ var insert = function(body) {
   
   return newUser.saveAsync().then(function() {
     var msg = null;
-    console.log('success is here..');
     return msg;
   }, function(err) {
-    console.log(err);
     if(err.name === 'MongoError'){
       var msg = { 
         firstNameMsg : '',
@@ -125,7 +123,6 @@ var findAddress = function(id) {
 
 var findName = function(id) {
   return users.findOneAsync({_id : id}, {firstName : 1, lastName:1, _id : 0}).then(function(name) {
-    console.log('in findName..',name);
     return name;
   }, function(err) {
     return null;
@@ -134,7 +131,6 @@ var findName = function(id) {
 
 var findPerson = function(id) {
   return users.findOneAsync( {_id : id }).then(function(user) {
-    console.log('the person is..', user);
     return user;
   }, function(err) {
     return null;
@@ -199,8 +195,6 @@ var update = function(req, res, id, callback) {
     },
     { upsert : 1}).then( function(updated) {
       callback(null);
-    }, function(err) {
-      console.log(err);
     });
   } else {
     var msg = {
