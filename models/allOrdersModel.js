@@ -2,26 +2,38 @@ var mongoose = require('mongoose');
 var schema = require('../schemas');
 var allOrders = mongoose.model('allorders', schema.allOrders);
 
-var insert = function(req, res, uid, id) {
+var insertOrder = function(req, res, name, items, number, cost, total, address) {
+  console.log('in record model', name, items, number, cost, total);
+  var newOrder = allOrders({
+    userName : name,
+    items : items,
+    numbers : number,
+    costs : cost,
+    total : total,
+    address : address
+  });
+  return newOrder.saveAsync().then(function() {
+    var msg = 'successs..';
+    console.log('success is here..');
+    return msg;
+  }, function(err) {
+    return err;
+  });
+}
 
-};
-
-var remove = function() {
-
-};
-
-var update = function() {
-
-};
-
-var recordOrder = function(req, res, id, currentOrder, number, cost, total) {
-  
+var getAllOrders = function(req, res) {
+  return allOrders.findAsync().then(function(orders){
+    console.log('allorders are...', orders);
+    return orders;
+  }, function(err) {
+    console.log(err);
+    return null;
+  });
 }
 
 var expobj = {
-  insert : insert,
-  remove : remove,
-  update : update
+  insertOrder : insertOrder,
+  getAllOrders : getAllOrders
 };
 
 module.exports = expobj;

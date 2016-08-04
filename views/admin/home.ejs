@@ -9,31 +9,47 @@
   <body>
     <div class="homeWrapper">
       <div class="searchBar">
-        <span >BURGER</span>
-        <input type="text"/>
-        <i class="fa fa-search w3-xlarge"></i>
+        <form name="search" method="post">
+          <span >BURGER</span>
+          <input type="text" name="searchText"/>
+          <input type="submit" name="searchButton"/>
+        </form> 
       </div>
       <div class="menuBar backgroundSaffron">
-        <div class="menu"><img src="/images/home.png" class="icon"/></div>
-        <div class="menu"><span>About us</span></div>
+        <a href="/admin/home">
+          <div class="menu"><img src="/images/home.png" class="icon"></img></div>
+        </a>
+        <div class="menu">
+          <span>About us</span>
+        </div>
         <div class="menu"><span>Contact us</span></div>
         <div class="menu"><span>Policies</span></div>
-        <div class="menu floatRight">ADMIN<a href="/user/login">Log out</a></div>
-        <div class="menu floatRight"><a href="/admin/addItem">Add Item</a></div>
+        <a href="/user/login"><div class="menu floatRight">ADMIN Log out</div></a>
+        <a href="/admin/addItem"><div class="menu floatRight">Add Item</div></a>
+        <a href="/admin/allItems"><div class="menu floatRight">View all Items</div></a>
+        <a href="/admin/allOrders"><div class="menu floatRight">View all Orders</div></a>
       </div>
-      <div class="itemContainer">
+      <div class>
         <div class="topOffer">
           <div class="itemTitle"><span>Today's top offers</span></div>
+          <% for (var i = 0; i< tops.length; i++) {%>
           <div>
             <div class="itemHeight">
               <div class="leftFloat largeWidth">
-                <img src="/images/logo.png"/>
+                <a href="/admin/editItem/<%= tops[i].id%>">
+                  <img src="/uploads/<%= tops[i].image%>"/>
+                </a>  
                 <div>
-                  <span>Item description</span>
+                  <span class="bold"><%= tops[i].name%></span><br>
+                  <span><%= tops[i].description%></span><br>
+                  <span><%= tops[i].offerDescription%></span><br>
+                  <span><%= tops[i].actualCost%></span><br>
+                  <span><%= tops[i].offerCost %></span>
                 </div>
               </div>  
-            </div>
+            </div> 
           </div>
+          <% } %>
         </div>
         <div class="itemGrid">
           <div class="itemTitle">
@@ -43,11 +59,15 @@
           <% for (var i = 0; i< burgers.length; i++) {%>
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
-                <a href="/user/description/<%= burgers[i].id%>">
+                <a href="/admin/editItem/<%= burgers[i].id%>">
                   <img src="/uploads/<%= burgers[i].image%>" onclick=""/>
                 </a>
                 <div>
-                  <span><%= burgers[i].name + "\n" + burgers[i].description + "\n" + burgers[i].actualCost + "\n" + burgers[i].offerCost %></span>
+                  <span class="bold"><%= burgers[i].name%></span><br>
+                  <span><%= burgers[i].description%></span><br>
+                  <span><%= burgers[i].offerDescription%></span><br>
+                  <span>Cost :<%= burgers[i].actualCost%></span><br>
+                  <span>Get it for :<%= burgers[i].offerCost %></span>
                 </div>
               </div>
             </div>
@@ -60,11 +80,15 @@
           <% for (i = 0; i< starters.length; i++) {%>
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
-                <a href="/user/descripton">
-                  <img src="/images/logo.png"/>
+                <a href="/admin/editItem/<%= starters[i].id%>">
+                  <img src="/uploads/<%= starters[i].image%>"/>
                 </a>
                 <div>
-                  <span><%= starters[i].name + "/n" + starters[i].description + "/n" + starters[i].actualCost + starters[i].offerCost %></span>
+                  <span class="bold"><%= starters[i].name%></span><br>
+                  <span><%= starters[i].description%></span><br>
+                  <span><%= starters[i].offerDescription%></span><br>
+                  <span>Cost :<%= starters[i].actualCost%></span><br>
+                  <span>Get it for :<%= starters[i].offerCost %></span>
                 </div>
               </div>
             </div>
@@ -77,9 +101,15 @@
           <% for (i = 0; i< drinks.length; i++) {%>
             <div class="itemHeight leftFloat">
               <div class="leftFloat largeWidth">
-                <img src="/images/logo.png"/>
+                <a href="/admin/editItem/<%= drinks[i].id%>">
+                  <img src="/uploads/<%= drinks[i].image%>"/>
+                </a>
                 <div>
-                  <span><%= drinks[i].name + "\n" + drinks[i].description + "\n" + drinks[i].actualcost + "\n" + drinks[i].offercost%> </span>
+                  <span class="bold"><%= drinks[i].name%></span><br>
+                  <span><%= drinks[i].description%></span><br>
+                  <span><%= drinks[i].offerDescription%></span><br>
+                  <span>Cost :<%= drinks[i].actualCost%></span><br>
+                  <span>Get it for :<%= drinks[i].offerCost %></span>
                 </div>
               </div>
             </div>

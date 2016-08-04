@@ -1,12 +1,5 @@
 var mongoose = require('mongoose');
 var foodItems = new mongoose.Schema({
-  foodId : 
-  { 
-    type: Number, 
-    Default: null, 
-    required: true,
-    unique: true
-  },
   itemtype :
   {
     type: String,
@@ -30,7 +23,7 @@ var foodItems = new mongoose.Schema({
   { 
     type: String, 
     Default : null, 
-    required: true 
+    required: false 
   },
   offerDescription : 
   { 

@@ -78,7 +78,78 @@ function login(req, res) {
   });
 }
 
+function getAddress(req, res){
+  var id = req.cookies.uid;
+  var name = req.cookies.name;
+  var token = req.cookies.token;
+  if(token === 'user') {
+    return models.usersModel.findAddress(id).then(function (addressObj) {
+      console.log('delivery address....',addressObj);
+      return addressObj;
+//      res.render('user/deliveryConfirmation', {user: name, logout: 'Log out', address : addressObj.address});
+    });
+  } else {
+    return null;
+//    res.render('user/deliveryConfirmation', {user: 'Guest', logout: '', address : ''});
+  }
+}
+
+function userProfile(req, res) {
+  var id = req.cookies.uid;
+  var token = req.cookies.token;
+  if(token === 'user') {
+    models.usersModel.findPerson(id).then(function(user) {
+    res.render('user/profile',{
+        firstNameMsg : '',
+        lastNameMsg : '',
+        emailMsg : '',
+        passwordMsg : '',
+        confirmPasswordMsg : '',
+        phoneMsg : '',
+        addressMsg : '',
+        user : user
+      });
+    });
+  } else {
+    res.send('some error occured..');
+  }
+}
+
+function updateProfile(req, res) {
+  var id = req.cookies.uid;
+  var token = req.cookies.token;
+  if(token === 'user') {
+    models.usersModel.update(req, res, id, function(ret)
+    {
+      console.log('ret is..', ret);
+      if(ret === null) {
+        res.redirect('/user/login');
+      } else {
+        res.render('user/profile',{
+          firstNameMsg : ret.firstNameMsg,
+          lastNameMsg : ret.lastNameMsg,
+          emailMsg : ret.emailMsg,
+          passwordMsg : ret.passwordMsg,
+          confirmPasswordMsg : ret.confirmPasswordMsg,
+          phoneMsg : ret.phoneMsg,
+          addressMsg : ret.addressMsg,
+          user : {  
+                    firstName : req.body.firstName,
+                    lastName : req.body.lastName,
+                    email : req.body.email,
+                    phone : req.body.phone,
+                    address : req.body.permanentAddress
+                  }
+        });
+      }
+    });
+  }
+}
+
 module.exports = { 
   registration : registration,
-  login : login
+  login : login,
+  getAddress : getAddress,
+  userProfile : userProfile,
+  updateProfile : updateProfile
 };

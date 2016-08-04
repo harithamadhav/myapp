@@ -1,6 +1,45 @@
 var mongoose = require('mongoose');
 var allOrders = new mongoose.Schema({
-  orderId : 
+  userName :
+  {
+    type: String,
+    Default: null,
+    required: true
+  },
+  items :
+  [{
+    type: String,
+    Default: null,
+    required: true
+  }],
+  numbers :
+  [{
+    type: Number,
+    Default: null,
+    required: true
+  }],
+  costs :
+  [{
+    type: Number,
+    Default: null,
+    required: true
+  }],
+  total :
+  {
+    type: Number,
+    Default: null,
+    required: true
+  },
+  address :
+  {
+    type: String,
+    Default: null,
+    required: true
+  }
+});
+
+module.exports = allOrders;
+/*  orderId : 
   { 
     type: String, 
     Default: null, 
@@ -20,7 +59,4 @@ var allOrders = new mongoose.Schema({
       Default: null, 
       required: true 
     },
-  }]
-});
-
-module.exports = allOrders;
+  }]*/

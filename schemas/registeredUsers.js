@@ -1,12 +1,5 @@
 var mongoose = require('mongoose');
 var registeredUsers = new mongoose.Schema({
-  userId :
-  { 
-    type: Number, 
-    Default: null, 
-    required: true,
-    unique: true 
-  },
   userType :
   {
     type: String,

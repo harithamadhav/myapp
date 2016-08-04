@@ -6,7 +6,7 @@ body {
 
 @font-face {
   font-family: motionPic;
-  src: url("../font/LadybugLoveDemo.ttf");
+  src: url("../font/Myndraine.otf");
 }
 
 .homeWrapper {
@@ -73,7 +73,7 @@ body {
 }
 
 .itemHeight {
-  height: 180px;
+  height: 240px;
   padding: 10px;
 }
 
@@ -92,7 +92,7 @@ body {
 }
 
 .grid {
-  min-height: 200px;
+  min-height: 260px;
   width: 100%;
 }
 
@@ -122,4 +122,17 @@ img {
 
 .padding20 {
   padding: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+table {
+  border: 3px;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: #000000;
 }

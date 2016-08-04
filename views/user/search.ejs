@@ -35,8 +35,11 @@
             <img src="/images/shopping-cart.png" class="icon"></img>
           </div>
         </a>
-        <div class="menu floatRight"><a href="/user/signup">Signup</a></div>
-        <div class="menu floatRight"><%= user%><a href="/user/login"><%= logout%></a></div>
+        <a href="/user/signup">
+          <div class="menu floatRight">Signup</div>
+        </a>
+        <a href="/user/profile"><div class="menu floatRight"><%= user%></div></a>
+        <a href="/user/login"><div class="menu floatRight"><%= logout%></div></a>
       </div>
       <div class="list">
         <% for (var i = 0; i< results.length; i++) {%>

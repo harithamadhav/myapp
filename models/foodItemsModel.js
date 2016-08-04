@@ -1,24 +1,27 @@
 var mongoose = require('mongoose');
 var schema = require('../schemas');
 var foodItems = mongoose.model('fooditems', schema.foodItems);
+var ObjectId = require('mongodb').ObjectID;
 
 var insert = function(req) {
   console.log('req.file is...',req.file);
   var type = req.body.add;
   var fileName = null;
+  var offerCost = req.body.offerCost;
   if(req.hasOwnProperty('file')){
     fileName = req.file.filename;
   }
-
+  if(req.body.offerCost === '') {
+    var offerCost = req.body.actualCost;
+  }
   var newFood = new foodItems ({
-    foodId : 0004,
     itemtype : req.body.select,
     name : req.body.itemName,
     image : fileName,
     description : req.body.itemDescription,
     offerDescription : req.body.offerDescription,
     actualCost : req.body.actualCost,
-    offerCost : req.body.offerCost
+    offerCost : offerCost
   });
 
   return newFood.saveAsync().then(function() {
@@ -28,14 +31,6 @@ var insert = function(req) {
     console.log('err in model',err.name);
     return err;
   });
-
-};
-
-var remove = function() {
-
-};
-
-var update = function() {
 
 };
 
@@ -71,19 +66,59 @@ var getOrderSummary = function(orders){
     console.log(data);
     return data;
   }, function (err) {
-    console.log(ree.name);
+    console.log(err.name);
     return null;
+  });
+}
+
+var getAll = function() {
+  return foodItems.findAsync().then(function(data) {
+    console.log('all items...',data);
+    return data;
+  }, function (err) {
+    console.log(err.name);
+    return null;
+  });
+}
+
+var remove = function(id) {
+  return foodItems.removeAsync( { "_id" : ObjectId(id) } ).then( function(returnval){
+    console.log('deleted..', returnval);
+    return returnval;
+  });
+}
+
+var update = function(id) {
+  var offerCost = req.body.offerCost;
+  if( req.body.offerCost == '') {
+    offerCost = req.body.actualCost;
+  }
+  return foodItems.updateAsync( 
+    { "_id" : ObjectId(id) },
+    {
+      name : req.body.itemName,
+      description : req.body.itemDescription,
+      offerDescription : req.body.offerDescription,
+      actualCost : req.body.actualCost,
+      offerCost : offerCost
+    },
+    { upsert : 1}).then( function(updated) {
+     return updated;
+    }, function(err) {
+     console.log(err.name);
+     return null;
   });
 }
 
 var expobj = {
   insert : insert,
   remove : remove,
-  update : update,
   getItem : getItem,
+  update : update,
   getOrderSummary : getOrderSummary,
   getHomeData : getHomeData,
-  getSearchData : getSearchData
+  getSearchData : getSearchData,
+  getAll : getAll
 };
 
 module.exports = expobj;

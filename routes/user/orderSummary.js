@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req,res) {
-  controller.allOrdersController.checkOut(req, res);
+  res.redirect('/user/deliveryConfirmation');
 });
 
 module.exports = router;
