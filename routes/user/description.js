@@ -14,8 +14,7 @@ router.get('/:id', function(req, res) {
 });
 
 router.post('/:id', function(req, res) {
-  var link = req.params.id;
   controller.allOrdersController.addOrder(req, res);
-})
+});
 
 module.exports = router;

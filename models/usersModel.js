@@ -27,12 +27,12 @@ var insert = function(body) {
   }
   var newUser = new users({
     userType: 'user',
-    firstName: body.firstName,
-    lastName: body.lastName,
-    email: body.email,
+    firstName: body.firstName.trim(),
+    lastName: body.lastName.trim(),
+    email: body.email.trim(),
     password: hash,
-    phone: body.phone,
-    address: body.permanentAddress
+    phone: body.phone.trim(),
+    address: body.permanentAddress.trim()
   });
   return newUser.saveAsync().then(function() {
     var msg = null;
@@ -136,56 +136,56 @@ var update = function(req, res, id, callback) {
   if (!validEmail.test(req.body.email)) {
     var emailMsg = "invalid";
   }
-  if (req.body.email === '') {
+  if (req.body.email.trim() === '') {
     var emailMsg = "required";
   } else {
     var emailMsg = '';
   }
   var hash = '';
-  if (req.body.confirmPassword === '') {
+  if (req.body.confirmPassword.trim() === '') {
     var confirmPasswordMsg = "required";
   }
   if (req.body.password != req.body.confirmPassword) {
     var confirmPasswordMsg = "not matching";
-  } else if (req.body.password != '') {
+  } else if (req.body.password.trim() != '') {
     var confirmPasswordMsg = '';
     var hash = md5(req.body.password);
   }
-  if (req.body.firstName === '') {
+  if (req.body.firstName.trim() === '') {
     var firstNameMsg = "required";
   } else {
     var firstNameMsg = '';
   }
-  if (req.body.lastName === '') {
+  if (req.body.lastName.trim() === '') {
     var lastNameMsg = "required";
   } else {
     var lastNameMsg = '';
   }
-  if (req.body.password === '') {
+  if (req.body.password.trim() === '') {
     var passwordMsg = "required";
   } else {
     var passwordMsg = '';
   }
-  if (req.body.phone === '') {
+  if (req.body.phone.trim() === '') {
     var phoneMsg = "required";
   } else {
     var phoneMsg = '';
   }
-  if (req.body.permanentAddress === '') {
+  if (req.body.permanentAddress.trim() === '') {
     var addressMsg = "required";
   } else {
     var addressMsg = '';
   }
-  if (req.body.firstName != '' && req.body.lastName != '' && req.body.email != '' && validEmail.test(req.body.email) && req.body.password != '' && req.body.confirmPassword != '' && req.body.phone != '' && req.body.permanentAddress != '' && req.body.confirmPassword === req.body.password) {
+  if (req.body.firstName.trim() != '' && req.body.lastName.trim() != '' && req.body.email.trim() != '' && validEmail.test(req.body.email) && req.body.password.trim() != '' && req.body.confirmPassword.trim() != '' && req.body.phone.trim() != '' && req.body.permanentAddress.trim() != '' && req.body.confirmPassword.trim() === req.body.password.trim()) {
     users.updateAsync({
       "_id": ObjectId(id)
     }, {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
+      firstName: req.body.firstName.trim(),
+      lastName: req.body.lastName.trim(),
+      email: req.body.email.trim(),
       password: hash,
-      phone: req.body.phone,
-      address: req.body.permanentAddress
+      phone: req.body.phone.trim(),
+      address: req.body.permanentAddress.trim()
     }, {
       upsert: 1
     }).then(function() {

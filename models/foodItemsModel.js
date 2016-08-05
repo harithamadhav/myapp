@@ -10,30 +10,30 @@ var insert = function(req) {
   var itemNameMsg = "required";
   var costMsg = "required";
   var offerCost = req.body.offerCost;
-  if (req.body.itemName != '') {
+  if (req.body.itemName.trim() != '') {
     itemNameMsg = '';
   }
   if (req.body.select != null) {
     typeMsg = '';
   }
-  if (req.body.actualCost != '') {
+  if (req.body.actualCost.trim() != '') {
     costMsg = '';
   }
   if (req.hasOwnProperty('file')) {
     fileName = req.file.filename;
     imageMsg = '';
   }
-  if (req.body.offerCost === '') {
+  if (req.body.offerCost.trim() === '') {
     var offerCost = req.body.actualCost;
   }
   var newFood = new foodItems({
     itemtype: req.body.select,
-    name: req.body.itemName,
+    name: req.body.itemName.trim(),
     image: fileName,
-    description: req.body.itemDescription,
-    offerDescription: req.body.offerDescription,
-    actualCost: req.body.actualCost,
-    offerCost: offerCost
+    description: req.body.itemDescription.trim(),
+    offerDescription: req.body.offerDescription.trim(),
+    actualCost: req.body.actualCost.trim(),
+    offerCost: offerCost.trim()
   });
   return newFood.saveAsync().then(function() {
     var msg = null;
@@ -110,24 +110,24 @@ var update = function(req, callback) {
   var itemNameMsg = '';
   var costMsg = '';
   var offerCost = req.body.offerCost;
-  if (req.body.offerCost == '') {
+  if (req.body.offerCost.trim() == '') {
     offerCost = req.body.actualCost;
   }
-  if (req.body.itemName === '') {
+  if (req.body.itemName.trim() === '') {
     itemNameMsg = "required";
   }
-  if (req.body.actualCost === '') {
+  if (req.body.actualCost.trim() === '') {
     costMsg = "required";
   }
-  if (req.body.itemName != '' && req.body.actualCost != '') {
+  if (req.body.itemName.trim() != '' && req.body.actualCost.trim() != '') {
     foodItems.updateAsync({
       "_id": ObjectId(id)
     }, {
-      name: req.body.itemName,
-      description: req.body.itemDescription,
-      offerDescription: req.body.offerDescription,
-      actualCost: req.body.actualCost,
-      offerCost: offerCost
+      name: req.body.itemName.trim(),
+      description: req.body.itemDescription.trim(),
+      offerDescription: req.body.offerDescription.trim(),
+      actualCost: req.body.actualCost.trim(),
+      offerCost: offerCost.trim()
     }, {
       upsert: 1
     }).then(function(updated) {
