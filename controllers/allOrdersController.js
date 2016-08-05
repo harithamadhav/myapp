@@ -74,7 +74,7 @@ function recordOrder(req, res) {
   var id = req.cookies.uid;
   var token = req.cookies.token;
   var total = 0;
-  for (k = 0; k < cost.length; k++) {
+  for (var k = 0; k < cost.length; k++) {
     total = total + cost[k];
   }
   if (id != null && token === 'user') {
@@ -91,9 +91,20 @@ function recordOrder(req, res) {
   });
 }
 
+function removeOrder(req, res) {
+  var id = req.params.id;
+  for(var m = 0; m< orders.length; m++) {
+    if(orders[m] === id) {
+      orders.splice(m, 1);
+    }
+  }
+  orderSummary(req, res);
+}
+
 module.exports = {
   viewOrders: viewOrders,
   addOrder: addOrder,
   orderSummary: orderSummary,
-  recordOrder: recordOrder
+  recordOrder: recordOrder,
+  removeOrder: removeOrder
 }
