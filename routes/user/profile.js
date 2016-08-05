@@ -8,6 +8,6 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
   controller.userController.updateProfile(req, res);
-})
+});
 
 module.exports = router;

@@ -4,14 +4,21 @@ var controller = require('../../controllers');
 
 router.get('/', function(req, res) {
   res.render('./user/signup', {
-      firstNameMsg : '',
-      lastNameMsg : '',
-      emailMsg : '',
-      passwordMsg : '',
-      confirmPasswordMsg : '',
-      phoneMsg : '',
-      addressMsg : ''
-    });
+    firstNameMsg : '',
+    lastNameMsg : '',
+    emailMsg : '',
+    passwordMsg : '',
+    confirmPasswordMsg : '',
+    phoneMsg : '',
+    addressMsg : '',
+    data : {
+      firstName : '',
+      lastName : '',
+      email : '',
+      phone : '',
+      address : ''
+    }
+  });
 });
 
 router.post('/', controller.userController.registration);

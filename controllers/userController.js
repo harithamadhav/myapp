@@ -1,17 +1,25 @@
 var models = require('../models');
 var md5 = require('md5');
+
 function registration(req, res) {
   var body = req.body;
-  models.usersModel.insert(body).then( function(data) {
-    if(data != null) {
-      res.render('user/signup',{
-        firstNameMsg : data.firstNameMsg,
-        lastNameMsg : data.lastNameMsg,
-        emailMsg : data.emailMsg,
-        passwordMsg : data.passwordMsg,
-        confirmPasswordMsg : data.confirmPasswordMsg,
-        phoneMsg : data.phoneMsg,
-        addressMsg : data.addressMsg
+  models.usersModel.insert(body).then(function(data) {
+    if (data != null) {
+      res.render('user/signup', {
+        firstNameMsg: data.firstNameMsg,
+        lastNameMsg: data.lastNameMsg,
+        emailMsg: data.emailMsg,
+        passwordMsg: data.passwordMsg,
+        confirmPasswordMsg: data.confirmPasswordMsg,
+        phoneMsg: data.phoneMsg,
+        addressMsg: data.addressMsg,
+        data: {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          phone: req.body.phone,
+          address: req.body.address
+        }
       });
     } else {
       res.redirect('/user/login');
@@ -23,13 +31,10 @@ function registration(req, res) {
 
 function login(req, res) {
   var body = req.body;
-  models.usersModel.login(body).then( function(data) {
-    if(data != null) {
-      var token = 'token';
-      var name = 'name';
-      var uid = 'uid';
-      models.foodItemsModel.getHomeData(req).then( function(result) {
-        if(result != null) {
+  models.usersModel.login(body).then(function(data) {
+    if (data != null) {
+      models.foodItemsModel.getHomeData(req).then(function(result) {
+        if (result != null) {
           var length = result.length;
           var b = 0;
           var d = 0;
@@ -51,31 +56,32 @@ function login(req, res) {
           }
           if (data.userType === 'user') {
             var emailCookie = md5(body.email);
-            res.cookie( token, 'user');
-            res.cookie( name, data.firstName);
-            res.cookie( uid, data.id);
+            res.cookie('token', 'user');
+            res.cookie('name', data.firstName);
+            res.cookie('uid', data.id);
             res.redirect('/user/home');
           } else if (data.userType === 'admin') {
-            res.cookie( token, 'admin');
+            res.cookie('token', 'admin');
+            res.cookie('uid', data.id);
             res.redirect('/admin/home');
-          } else {
-            res.render('user/login',{
-              emailMsg : 'invalid',
-              passwordMsg : 'invalid'
-            });          
           }
         }
+      });
+    } else {
+      res.render('user/login', {
+        emailMsg: 'invalid',
+        passwordMsg: 'invalid'
       });
     }
   });
 }
 
-function getAddress(req, res){
+function getAddress(req, res) {
   var id = req.cookies.uid;
   var name = req.cookies.name;
   var token = req.cookies.token;
-  if(token === 'user') {
-    return models.usersModel.findAddress(id).then(function (addressObj) {
+  if (token === 'user') {
+    return models.usersModel.findAddress(id).then(function(addressObj) {
       return addressObj;
     });
   } else {
@@ -86,17 +92,17 @@ function getAddress(req, res){
 function userProfile(req, res) {
   var id = req.cookies.uid;
   var token = req.cookies.token;
-  if(token === 'user') {
+  if (token === 'user' || token === 'admin') {
     models.usersModel.findPerson(id).then(function(user) {
-    res.render('user/profile',{
-        firstNameMsg : '',
-        lastNameMsg : '',
-        emailMsg : '',
-        passwordMsg : '',
-        confirmPasswordMsg : '',
-        phoneMsg : '',
-        addressMsg : '',
-        user : user
+      res.render('user/profile', {
+        firstNameMsg: '',
+        lastNameMsg: '',
+        emailMsg: '',
+        passwordMsg: '',
+        confirmPasswordMsg: '',
+        phoneMsg: '',
+        addressMsg: '',
+        user: user
       });
     });
   } else {
@@ -107,26 +113,25 @@ function userProfile(req, res) {
 function updateProfile(req, res) {
   var id = req.cookies.uid;
   var token = req.cookies.token;
-  if(token === 'user') {
-    models.usersModel.update(req, res, id, function(ret)
-    {
-      if(ret === null) {
+  if (token === 'user' || token === 'admin') {
+    models.usersModel.update(req, res, id, function(ret) {
+      if (ret === null) {
         res.redirect('/user/login');
       } else {
-        res.render('user/profile',{
-          firstNameMsg : ret.firstNameMsg,
-          lastNameMsg : ret.lastNameMsg,
-          emailMsg : ret.emailMsg,
-          passwordMsg : ret.passwordMsg,
-          confirmPasswordMsg : ret.confirmPasswordMsg,
-          phoneMsg : ret.phoneMsg,
-          addressMsg : ret.addressMsg,
-          user : {  
-            firstName : req.body.firstName,
-            lastName : req.body.lastName,
-            email : req.body.email,
-            phone : req.body.phone,
-            address : req.body.permanentAddress
+        res.render('user/profile', {
+          firstNameMsg: ret.firstNameMsg,
+          lastNameMsg: ret.lastNameMsg,
+          emailMsg: ret.emailMsg,
+          passwordMsg: ret.passwordMsg,
+          confirmPasswordMsg: ret.confirmPasswordMsg,
+          phoneMsg: ret.phoneMsg,
+          addressMsg: ret.addressMsg,
+          user: {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            phone: req.body.phone,
+            address: req.body.permanentAddress
           }
         });
       }
@@ -134,10 +139,10 @@ function updateProfile(req, res) {
   }
 }
 
-module.exports = { 
-  registration : registration,
-  login : login,
-  getAddress : getAddress,
-  userProfile : userProfile,
-  updateProfile : updateProfile
+module.exports = {
+  registration: registration,
+  login: login,
+  getAddress: getAddress,
+  userProfile: userProfile,
+  updateProfile: updateProfile
 };

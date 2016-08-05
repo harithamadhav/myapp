@@ -4,7 +4,6 @@ var controller = require('../../controllers');
 
 router.get('/', function(req, res) {
   var type = req.cookies.token;
-
   if(type === 'admin') {
     controller.foodItemController.search(req, res);
   } else if(type === 'user') {

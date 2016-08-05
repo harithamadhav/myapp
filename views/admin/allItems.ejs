@@ -8,9 +8,7 @@
   </head>
   <body>
     <div class="homeWrapper">
-      <div class="menuBar backgroundSaffron">
-        <% include menubar %>
-      </div>
+      <% include menubar %>
       <div class="centerBox">
         <table border="5">
           <tr>
@@ -21,9 +19,9 @@
           </tr>
           <% for (var i = 0; i< items.length; i++) { %>
           <tr>
-            <td><%= items[i].name%></td>
-            <td><%= items[i].itemtype%></td>
-            <td><%= items[i].offerCost%></td>
+            <td><%= items[i].name %></td>
+            <td><%= items[i].itemtype %></td>
+            <td><%= items[i].offerCost %></td>
             <td><a href="/admin/allItems/<%= items[i].id%>">remove</a></td>
           </tr>
           <% } %>

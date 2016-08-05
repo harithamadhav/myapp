@@ -8,16 +8,16 @@
   </head>
   <body>
     <div class="homeWrapper">
-      <div class="menuBar backgroundSaffron">
-        <% include menubar %>
-      </div>
+      <% include menubar %>
       <div class="list">
-        <% for (var i = 0; i< results.length; i++) {%>
+        <% for (var i = 0; i< results.length; i++) { %>
           <div class="itemHeight">
             <div class="leftFloat largeWidth">
-              <img src="/uploads/<%= results[i].image%>"/>
+              <img src="/uploads/<%= results[i].image %>"/>
               <div>
-                <span><%= results[i].name%><br><%=results[i].description%><br><%results[i].offerDescription %></span>
+                <span><%= results[i].name %><br></span>
+                <span><%= results[i].description %><br></span>
+                <sapn><%= results[i].offerDescription %></span>
               </div>
             </div>
             <div class="floatRight padding20">
@@ -25,7 +25,7 @@
                 <span> Cost </span>
               </div>
               <div>
-                <span><%= cost[i]%></span>
+                <span><%= cost[i] %></span>
               </div>
             </div>
             <div class="floatRight padding20">
@@ -33,33 +33,33 @@
                 <span>Numbers</span>
               </div>
               <div>
-                <span><%= number[i]%></span>
+                <span><%= number[i] %></span>
               </div>
             </div>
             <div class="floatRight padding20">
               <div>
-                <span>Rate :<%= results[i].actualCost%></span>
+                <span>Rate :<%= results[i].actualCost %></span>
               </div>
               <div>
-                <span>With offer : <%= results[i].offerCost%></span>
+                <span>With offer : <%= results[i].offerCost %></span>
               </div>
             </div>
           </div>
         <% } %>
         <% if(results.length != 0) { %>
-        <div class="itemHeight centerAllign">
-          <div>
-            <span>Total</span>
+          <div class="itemHeight centerAllign">
+            <div>
+              <span>Total</span>
+            </div>
+            <div>
+              <span><%= total %></span>
+            </div>
+            <div>
+              <form name="checkOut" method="post">
+                <input type="submit" value="Check out" class="button"/>
+              </form>
+            </div>
           </div>
-          <div>
-            <span><%= total%></span>
-          </div>
-          <div>
-            <form name="checkOut" method="post">
-              <input type="submit" value="Check out" class="button"/>
-            </form>
-          </div>
-        </div>
         <% } %>
       </div>
     </div>

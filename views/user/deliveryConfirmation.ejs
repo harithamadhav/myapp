@@ -8,21 +8,19 @@
   </head>
   <body>
     <div class="homeWrapper">
-      <div class="menuBar backgroundSaffron">
-        <% include menubar %>
-      </div>
+      <% include menubar %>
       <div class="list">
-      <div class="addressField">
-        <form method="post" name="confirmAdderss">
-        <span class="fieldName">Delivery Address</span>
-          <div class="inputField">
-            <textarea name="deliveryAddress" cols=20 rows=6 class="inputFieldSize"><%= address%></textarea>
-          </div>
+        <div class="addressField">
+          <form method="post" name="confirmAdderss">
+            <span class="fieldName">Delivery Address</span>
+            <div class="inputField">
+              <textarea name="deliveryAddress" cols=20 rows=6 class="inputFieldSize"><%= address %></textarea>
+            </div>
         </div>
-      </div> 
+      </div>
       <div>
-          <input type="submit" class="button" value="OK">
-        </form>
+      <input type="submit" class="button" value="OK">
+      </form>
       </div>
     </div>
   </body>

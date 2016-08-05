@@ -11,12 +11,11 @@ var insert = function(body) {
   if (!validEmail.test(body.email)) {
     var emailMsg = "invalid";
   }
-   if (body.email === '') {
+  if (body.email === '') {
     var emailMsg = "required";
   } else {
     var emailMsg = '';
   }
-
   var hash = null;
   var confirmPasswordMsg = "required";
   if (body.password != body.confirmPassword) {
@@ -26,67 +25,64 @@ var insert = function(body) {
     var confirmPasswordMsg = '';
     var hash = md5(body.password);
   }
-  
-  var newUser = new users ({
-    userType : 'user',
-    firstName : body.firstName,
-    lastName : body.lastName,
-    email : body.email,
-    password : hash,
-    phone : body.phone,
-    address : body.permanentAddress
+  var newUser = new users({
+    userType: 'user',
+    firstName: body.firstName,
+    lastName: body.lastName,
+    email: body.email,
+    password: hash,
+    phone: body.phone,
+    address: body.permanentAddress
   });
-  
   return newUser.saveAsync().then(function() {
     var msg = null;
     return msg;
   }, function(err) {
-    if(err.name === 'MongoError'){
-      var msg = { 
-        firstNameMsg : '',
-        lastNameMsg : '',
-        emailMsg : 'already used',
-        passwordMsg : '',
-        confirmPasswordMsg : '',
-        phoneMsg : '',
-        addressMsg : ''
+    if (err.name === 'MongoError') {
+      var msg = {
+        firstNameMsg: '',
+        lastNameMsg: '',
+        emailMsg: 'already used or invalid',
+        passwordMsg: '',
+        confirmPasswordMsg: '',
+        phoneMsg: '',
+        addressMsg: ''
       }
       return msg;
     } else {
-      
       if (err.errors.hasOwnProperty('firstName')) {
-      var firstNameMsg = err.errors.firstName.kind;
+        var firstNameMsg = err.errors.firstName.kind;
       } else {
-      var firstNameMsg = '';
-    }
+        var firstNameMsg = '';
+      }
       if (err.errors.hasOwnProperty('lastName')) {
-      var lastNameMsg = err.errors.lastName.kind;
+        var lastNameMsg = err.errors.lastName.kind;
       } else {
-      var lastNameMsg = '';
-    }
+        var lastNameMsg = '';
+      }
       if (err.errors.hasOwnProperty('password')) {
-      var passwordMsg = err.errors.password.kind;
+        var passwordMsg = err.errors.password.kind;
       } else {
-      var passwordMsg = '';
-    }
+        var passwordMsg = '';
+      }
       if (err.errors.hasOwnProperty('phone')) {
-      var phoneMsg = err.errors.phone.kind;
+        var phoneMsg = err.errors.phone.kind;
       } else {
-      var phoneMsg = '';
-    }
+        var phoneMsg = '';
+      }
       if (err.errors.hasOwnProperty('address')) {
-      var addressMsg = err.errors.address.kind;
+        var addressMsg = err.errors.address.kind;
       } else {
-      var addressMsg = '';
-    }
+        var addressMsg = '';
+      }
       var msg = {
-        firstNameMsg : firstNameMsg,
-        lastNameMsg : lastNameMsg,
-        emailMsg : emailMsg,
-        passwordMsg : passwordMsg,
-        confirmPasswordMsg : confirmPasswordMsg,
-        phoneMsg : phoneMsg,
-        addressMsg : addressMsg
+        firstNameMsg: firstNameMsg,
+        lastNameMsg: lastNameMsg,
+        emailMsg: emailMsg,
+        passwordMsg: passwordMsg,
+        confirmPasswordMsg: confirmPasswordMsg,
+        phoneMsg: phoneMsg,
+        addressMsg: addressMsg
       }
       return msg;
     }
@@ -94,7 +90,6 @@ var insert = function(body) {
 };
 
 var login = function(body) {
-  
   var email = body.email;
   if (!validEmail.test(body.email)) {
     var emailMsg = "invalid";
@@ -104,33 +99,33 @@ var login = function(body) {
     var emailMsg = '';
   }
   var password = md5(body.password);
-  
-  return users.findOneAsync({'email': email,'password':password}).then(function(result){
-    
+  return users.findOneAsync({
+    'email': email,
+    'password': password
+  }).then(function(result) {
     return result;
-  }, function(err){
+  }, function(err) {
     return null;
   });
 };
 
 var findAddress = function(id) {
-  return users.findOneAsync({_id : id}, {address : 1, _id : 0}).then(function(address) {
+  return users.findOneAsync({
+    _id: id
+  }, {
+    address: 1,
+    _id: 0
+  }).then(function(address) {
     return address;
   }, function(err) {
     return null;
   });
 };
 
-var findName = function(id) {
-  return users.findOneAsync({_id : id}, {firstName : 1, lastName:1, _id : 0}).then(function(name) {
-    return name;
-  }, function(err) {
-    return null;
-  });
-};
-
 var findPerson = function(id) {
-  return users.findOneAsync( {_id : id }).then(function(user) {
+  return users.findOneAsync({
+    _id: id
+  }).then(function(user) {
     return user;
   }, function(err) {
     return null;
@@ -141,13 +136,13 @@ var update = function(req, res, id, callback) {
   if (!validEmail.test(req.body.email)) {
     var emailMsg = "invalid";
   }
-   if (req.body.email === '') {
+  if (req.body.email === '') {
     var emailMsg = "required";
   } else {
     var emailMsg = '';
   }
   var hash = '';
-  if (req.body.confirmPassword === ''){
+  if (req.body.confirmPassword === '') {
     var confirmPasswordMsg = "required";
   }
   if (req.body.password != req.body.confirmPassword) {
@@ -166,7 +161,7 @@ var update = function(req, res, id, callback) {
   } else {
     var lastNameMsg = '';
   }
-  if (req.body.password ==='') {
+  if (req.body.password === '') {
     var passwordMsg = "required";
   } else {
     var passwordMsg = '';
@@ -181,43 +176,41 @@ var update = function(req, res, id, callback) {
   } else {
     var addressMsg = '';
   }
-
-  if(req.body.firstName != '' && req.body.lastName != '' && req.body.email != '' && validEmail.test(req.body.email) && req.body.password != '' && req.body.confirmPassword != '' && req.body.phone != '' && req.body.permanentAddress != '' && req.body.confirmPassword === req.body.password) {
-    users.updateAsync( 
-    { "_id" : ObjectId(id) },
-    {
-      userType : 'user',
-      firstName : req.body.firstName,
-      lastName : req.body.lastName,
-      email : req.body.email,
-      password : hash,
-      phone : req.body.phone,
-      address : req.body.permanentAddress
-    },
-    { upsert : 1}).then( function() {
+  if (req.body.firstName != '' && req.body.lastName != '' && req.body.email != '' && validEmail.test(req.body.email) && req.body.password != '' && req.body.confirmPassword != '' && req.body.phone != '' && req.body.permanentAddress != '' && req.body.confirmPassword === req.body.password) {
+    users.updateAsync({
+      "_id": ObjectId(id)
+    }, {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: hash,
+      phone: req.body.phone,
+      address: req.body.permanentAddress
+    }, {
+      upsert: 1
+    }).then(function() {
       callback(null);
     });
   } else {
     var msg = {
-      firstNameMsg : firstNameMsg,
-      lastNameMsg : lastNameMsg,
-      emailMsg : emailMsg,
-      passwordMsg : passwordMsg,
-      confirmPasswordMsg : confirmPasswordMsg,
-      phoneMsg : phoneMsg,
-      addressMsg : addressMsg
+      firstNameMsg: firstNameMsg,
+      lastNameMsg: lastNameMsg,
+      emailMsg: emailMsg,
+      passwordMsg: passwordMsg,
+      confirmPasswordMsg: confirmPasswordMsg,
+      phoneMsg: phoneMsg,
+      addressMsg: addressMsg
     }
     callback(msg);
   }
 };
 
 var exportObj = {
-  insert : insert,
-  update : update,
-  login : login,
-  findAddress : findAddress,
-  findName : findName,
-  findPerson : findPerson
+  insert: insert,
+  update: update,
+  login: login,
+  findAddress: findAddress,
+  findPerson: findPerson
 };
 
 module.exports = exportObj;

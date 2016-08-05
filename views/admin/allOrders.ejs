@@ -8,9 +8,7 @@
   </head>
   <body>
     <div class="homeWrapper">
-      <div class="menuBar backgroundSaffron">
-        <% include menubar %>
-      </div>
+      <% include menubar %>
       <div class="centerBox">
         <table border="5">
           <tr>
@@ -25,18 +23,18 @@
           <tr>
             <td><%= orders[i].userName %></td>
             <td>
-              <% for (var j=0; j< orders[i].items.length; j++) { %>
-                <%= orders[i].items[j] %><br>
+              <% for (var j = 0; j< orders[i].items.length; j++) { %>
+              <%= orders[i].items[j] %><br>
               <% } %>
             </td>
             <td>
-              <% for (var j=0; j< orders[i].numbers.length; j++) { %>
-                <%= orders[i].numbers[j] %><br>
+              <% for (var j = 0; j< orders[i].numbers.length; j++) { %>
+              <%= orders[i].numbers[j] %><br>
               <% } %>
             </td>
             <td>
-              <% for (var j=0; j< orders[i].costs.length; j++) { %>
-                <%= orders[i].costs[j] %><br>
+              <% for (var j = 0; j< orders[i].costs.length; j++) { %>
+              <%= orders[i].costs[j] %><br>
               <% } %>
             </td>
             <td><%= orders[i].total %></td>

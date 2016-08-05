@@ -8,22 +8,19 @@
   </head>
   <body>
     <div class="homeWrapper">
-      <div class="menuBar backgroundSaffron">
-        <% include menubar %>
-      </div>
+      <% include menubar %>
       <div class="list">
         <div class="itemHeight">
           <div class="leftFloat largeWidth">
             <img src="/uploads/<%= result.image%>"/>
             <div>
-              <span>
-              <%= result.name%><br>
-              <%=result.description%><br>
-              <%result.offerDescription %></span>
+              <span><%= result.name %><br></span>
+              <span><%= result.description %><br></span>
+              <span><%= result.offerDescription %></span>
             </div>
           </div>
           <div class="floatRight">
-            <span>Cost : <%= result.actualCost%></span><br> 
+            <span>Cost : <%= result.actualCost%><br></span> 
             <span>Get it for : <%= result.offerCost%></span>
             <div>
               <form method="post">
@@ -33,7 +30,7 @@
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   </body>
 </html>

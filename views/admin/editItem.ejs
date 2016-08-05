@@ -9,12 +9,10 @@
   </head>
   <body>
     <div class="homeWrapper">
-      <div class="menuBar backgroundSaffron">
-        <% include menubar %>
-      </div>
+      <% include menubar %>
       <div class="centerBox">
         <div class="itemTitle">
-          <span>Add Burgers</span>
+          <span>Edit item</span>
         </div>
         <form name="additemform" id="add" method="post">
           <div class="field">
@@ -29,13 +27,13 @@
           <div class="addressField lessHeight">
             <span class="fieldName">Description</span>
             <div class="inputField">
-              <textarea name="itemDescription" cols=20 rows=6 class="inputFieldSize"><%= item.description%></textarea>
+              <textarea name="itemDescription" cols=20 rows=6 class="inputFieldSize"><%= item.description %></textarea>
             </div>
           </div>
           <div class="addressField lessHeight">
             <span class="fieldName">Offer description</span>
             <div class="inputField">
-              <textarea name="offerDescription" cols=20 rows=6 class="inputFieldSize"><%= item.offerDescription%></textarea>
+              <textarea name="offerDescription" cols=20 rows=6 class="inputFieldSize"><%= item.offerDescription %></textarea>
             </div>
           </div>
           <div class="field">

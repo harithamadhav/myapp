@@ -13,31 +13,29 @@
           <span >BURGER</span>
           <input type="text" name="searchText"/>
           <input type="submit" name="searchButton" value="Search" class="button"/>
-        </form> 
+        </form>
       </div>
-      <div class="menuBar backgroundSaffron">
-        <% include menubar %>
-      </div>
+      <% include menubar %>
       <div class="itemContainer">
         <div class="topOffer">
           <div class="itemTitle"><span>Today's top offers</span></div>
-          <% for (var i = 0; i< tops.length; i++) {%>
-          <div>
-            <div class="itemHeight">
-              <div class="leftFloat largeWidth">
-                <a href="/user/description/<%= tops[i].id%>">
-                  <img src="/uploads/<%= tops[i].image%>"/>
-                </a>  
-                <div>
-                  <span class="bold"><%= tops[i].name%></span><br>
-                  <span><%= tops[i].description%></span><br>
-                  <span><%= tops[i].offerDescription%></span><br>
-                  <span>Cost :<%= tops[i].actualCost%></span><br>
-                  <span>Get it for :<%= tops[i].offerCost%></span>
+          <% for (var i = 0; i< tops.length; i++) { %>
+            <div>
+              <div class="itemHeight">
+                <div class="leftFloat largeWidth">
+                  <a href="/user/description/<%= tops[i].id %>">
+                  <img src="/uploads/<%= tops[i].image %>"/>
+                  </a>
+                  <div>
+                    <span class="bold"><%= tops[i].name %><br></span>
+                    <span><%= tops[i].description %><br></span>
+                    <span><%= tops[i].offerDescription %><br></span>
+                    <span>Cost : <%= tops[i].actualCost %><br></span>
+                    <span>Get it for : <%= tops[i].offerCost %></span>
+                  </div>
                 </div>
-              </div>  
+              </div>
             </div>
-          </div>
           <% } %>
         </div>
         <div class="itemGrid">
@@ -45,64 +43,64 @@
             <span>Burgers</span>
           </div>
           <div class="grid">
-          <% for (var i = 0; i< burgers.length; i++) {%>
-            <div class="itemHeight leftFloat">
-              <div class="leftFloat largeWidth">
-                <a href="/user/description/<%= burgers[i].id%>">
-                  <img src="/uploads/<%= burgers[i].image%>" onclick=""/>
-                </a>
-                <div>
-                  <span class="bold"><%= burgers[i].name%></span><br>
-                  <span><%= burgers[i].description%></span><br>
-                  <span><%= burgers[i].offerDescription%></span><br>
-                  <span>Cost :<%= burgers[i].actualCost%></span><br>
-                  <span>Get it for :<%= burgers[i].offerCost %></span>
+            <% for (var i = 0; i< burgers.length; i++) { %>
+              <div class="itemHeight leftFloat">
+                <div class="leftFloat largeWidth">
+                  <a href="/user/description/<%= burgers[i].id %>">
+                  <img src="/uploads/<%= burgers[i].image %>" onclick=""/>
+                  </a>
+                  <div>
+                    <span class="bold"><%= burgers[i].name %><br></span>
+                    <span><%= burgers[i].description %><br></span>
+                    <span><%= burgers[i].offerDescription %><br></span>
+                    <span>Cost : <%= burgers[i].actualCost %><br></span>
+                    <span>Get it for : <%= burgers[i].offerCost %><br></span>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% } %>
+            <% } %>
           </div>
           <div class="itemTitle">
             <span>Starters</span>
           </div>
           <div class="grid">
-          <% for (i = 0; i< starters.length; i++) {%>
-            <div class="itemHeight leftFloat">
-              <div class="leftFloat largeWidth">
-                <a href="/user/descripton/<%= starters[i].id%>">
-                  <img src="/uploads/<%= starters[i].image%>"/>
-                </a>
-                <div>
-                  <span class="bold"><%= starters[i].name%></span><br>
-                  <span><%= starters[i].description%></span><br>
-                  <span><%= starters[i].offerDescription%></span><br>
-                  <span>Cost :<%= starters[i].actualCost%></span><br>
-                  <span>Get it for :<%= starters[i].offerCost %></span>
+            <% for (i = 0; i< starters.length; i++) { %>
+              <div class="itemHeight leftFloat">
+                <div class="leftFloat largeWidth">
+                  <a href="/user/descripton/<%= starters[i].id %>">
+                  <img src="/uploads/<%= starters[i].image %>"/>
+                  </a>
+                  <div>
+                    <span class="bold"><%= starters[i].name %><br></span>
+                    <span><%= starters[i].description %><br></span>
+                    <span><%= starters[i].offerDescription %><br></span>
+                    <span>Cost : <%= starters[i].actualCost %><br></span>
+                    <span>Get it for : <%= starters[i].offerCost %></span>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% } %>
+            <% } %>
           </div>
           <div class="itemTitle">
             <span>Drinks and Delights</span>
           </div>
           <div class="grid">
-          <% for (i = 0; i< drinks.length; i++) {%>
-            <div class="itemHeight leftFloat">
-              <div class="leftFloat largeWidth">
-                <a href="/user/description/<%= drinks[i].id%>">
+            <% for (i = 0; i< drinks.length; i++) { %>
+              <div class="itemHeight leftFloat">
+                <div class="leftFloat largeWidth">
+                  <a href="/user/description/<%= drinks[i].id%>">
                   <img src="/uploads/<%= drinks[i].image%>"/>
-                </a>
-                <div>
-                  <span class="bold"><%= drinks[i].name%></span><br>
-                  <span><%= drinks[i].description%></span><br>
-                  <span><%= drinks[i].offerDescription%></span><br>
-                  <span>Cost :<%= drinks[i].actualCost%></span><br>
-                  <span>Get it for :<%= drinks[i].offerCost %></span>
+                  </a>
+                  <div>
+                    <span class="bold"><%= drinks[i].name %><br></span>
+                    <span><%= drinks[i].description %><br></span>
+                    <span><%= drinks[i].offerDescription %><br></span>
+                    <span>Cost : <%= drinks[i].actualCost %><br></span>
+                    <span>Get it for : <%= drinks[i].offerCost %></span>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% } %>
+            <% } %>
           </div>
         </div>
       </div>

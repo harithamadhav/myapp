@@ -9,6 +9,7 @@ router.get('/', function(req, res) {
   res.clearCookie('uid');
   res.render('./user/login',{emailMsg : '', passwordMsg : ''});
 });
+
 router.post('/', controller.userController.login);
 
 module.exports = router;

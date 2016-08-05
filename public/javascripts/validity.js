@@ -16,8 +16,10 @@ function validateEmail() {
   email.trim();
   if (email === "") {
     emptyError("Email", emailObject, errorMsgObject);
+    return 0;
   } else if (!validEmail.test(email)) {
     invalidError("Email", emailObject, errorMsgObject);
+    return 0;
   } else {
     emailObject.setAttribute("class", "greenBorder");
     return 1;
@@ -42,21 +44,22 @@ function validatePassword() {
   password = password.trim();
   if (password === "") {
     emptyError("Password", passwordObject, errorMsgObject);
+    return 0;
   } else if (!VALID_PASSWORD.test(password)) {
     invalidError("Password", passwordObject, errorMsgObject);
+    return 0;
   } else {
     passwordObject.setAttribute("class", "greenBorder");
+    return 1;
   }
-  return 1;
 }
 
 function register() {
-//  copyAddress();
   var cross = 1;
-  var firstName, lastName, email, password, confirmPassword, phone, address = 0;  
+  var firstName = 0, lastName = 0, email = 0, password = 0, confirmPassword = 0, phone = 0, address = 0;  
   firstName = validateFirstName();
-   lastName = validateLastName();
-   email = validateEmail();
+  lastName = validateLastName();
+  email = validateEmail();
   password = validatePassword();
   confirmPassword = validateConfirmPassword();
   phone = validatePhone();
@@ -76,8 +79,10 @@ function validateFirstName() {
   firstName = firstName.trim();
   if (firstName === "") {
     emptyError("First name", firstNameObject, errorMsgObject);
+    return 0;
   } else if (!nameFormat.test(firstName) || SCRIPT_INJECT.test(name)) {
     invalidError("First name", firstNameObject, errorMsgObject);
+    return 0;
   } else {
     firstNameObject.setAttribute("class", "greenBorder");
     return 1;
@@ -93,8 +98,10 @@ function validateLastName() {
   lastName = lastName.trim();
   if (lastName === "") {
     emptyError("Last name", lastNameObject, errorMsgObject);
+    return 0;
   } else if (!nameFormat.test(lastName) || SCRIPT_INJECT.test(lastName)) {
     invalidError("Last name", lastNameObject, errorMsgObject);
+    return 0;
   } else {
     lastNameObject.setAttribute("class", "greenBorder");
     return 1;
@@ -112,14 +119,17 @@ function validateConfirmPassword() {
   password = password.trim();
   if (confirmPassword === "") {
     emptyError("Password confirmation", confirmPasswordObject, errorMsgObject);
+    return 0;
   } else if (!(password === confirmPassword)) {
     invalidError("Password confirmation", confirmPasswordObject, errorMsgObject);
+    return 0;
   } else if (VALID_PASSWORD.test(confirmPassword) && password === confirmPassword) {
     confirmPasswordObject.setAttribute("class", "greenBorder");
+    return 1;
   } else if (!VALID_PASSWORD.test(confirmPassword)) {
     confirmPasswordObject.value = "";
+    return 0;
   }
-  return 1;
 }
 
 function validatePhone() {
@@ -132,12 +142,14 @@ function validatePhone() {
   var validPhoneNumber = /\d{10}/;
   if (phone === "") {
     emptyError("Phone number", phoneObject, errorMsgObject);
+    return 0;
   } else if (!validPhoneNumber.test(phone) || phone.length != 10 || SCRIPT_INJECT.test(phone)) {
     invalidError("Phone number", phoneObject, errorMsgObject);
+    return 0;
   } else {
     phoneObject.setAttribute("class", "greenBorder");
+    return 1;
   }
-  return 1;
 }
 
 function validatePermanentAddress() {
@@ -148,48 +160,13 @@ function validatePermanentAddress() {
   permanentAddress = permanentAddress.trim();
   if (permanentAddress === "") {
     emptyError("Permanent address", permanentAddressObject, errorMsgObject);
+    return 0;
   } else if (SCRIPT_INJECT.test(permanentAddress)) {
     invalidError("Permanent address", permanentAddressObject, errorMsgObject);
+    return 0;
   } else {
     permanentAddressObject.setAttribute("class", "greenBorder");
-  }
-  return 1;
-}
-
-function copyAddress() {
-  var check = document.getElementById('addressCheck');
-  var contactAddressObject = document.getElementsByName('contactAddress')[0];
-  var permanentAddressObject = document.getElementsByName('permanentAddress')[0];
-  if (check.checked) {
-    contactAddressObject.value = permanentAddressObject.value;
-    contactAddressObject.setAttribute('readonly', 'readonly');
-  } else {
-    contactAddressObject.removeAttribute('readonly');
-  }
-}
-
-function validateContactAddress() {
-  var contactAddressObject = document.getElementsByName('contactAddress')[0];
-  var contactAddress = contactAddressObject.value;
-  var errorMsgObject = document.getElementById('contactAddressError');
-  errorMsgObject.innerHTML = "";
-  contactAddress = contactAddress.trim();
-  if (contactAddress === "") {
-    emptyError("Contact address", contactAddressObject, errorMsgObject);
-  } else if (SCRIPT_INJECT.test(contactAddress)) {
-    invalidError("Contact address", contactAddressObject, errorMsgObject);    
-  } else {
-    contactAddressObject.setAttribute("class", "greenBorder");
-  }
-}
-
-function validateGender() {
-  var male = document.getElementById('male').checked;
-  var female = document.getElementById('female').checked;
-  var errorMsgObject = document.getElementById('genderError');
-  errorMsgObject.innerHTML = "";
-  if (!(male || female)) {
-    errorMsgObject.innerHTML = "Please select gender";
+    return 1;
   }
 }
 

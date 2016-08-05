@@ -39,24 +39,3 @@ var allOrders = new mongoose.Schema({
 });
 
 module.exports = allOrders;
-/*  orderId : 
-  { 
-    type: String, 
-    Default: null, 
-  //  required: true,
-  //  unique: true
-  },
-  userId : 
-  { 
-    type: Number, 
-    Default: null, 
-    required: true
-  },
-  items : 
-  [{ foodId : 
-    { 
-      type: Number, 
-      Default: null, 
-      required: true 
-    },
-  }]*/

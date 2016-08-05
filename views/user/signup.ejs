@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>Sign up to Burger</title>
@@ -11,11 +10,14 @@
         <div class="field">
           <span class="fieldName heading">Register here..</span>
           <div class="goToLogin"><a href="/user/login">Go to Login</a></div>
+          <a href="/user/home">
+            <div class="floatRight"><img src="/images/home.png" class="icon"></img></div>
+          </a>
         </div>
         <div class="field">
           <span class="fieldName">First Name</span>
           <div class="inputField">
-            <input type="text" name="firstName" class="inputFieldSize" placeholder="Enter first name"/>
+            <input type="text" name="firstName" class="inputFieldSize" placeholder="Enter first name" value="<%= data.firstName%>"/>
           </div>
         </div>
         <div class="errorBox">
@@ -24,20 +26,20 @@
         <div class="field">
           <span class="fieldName">Last Name</span>
           <div class="inputField">
-            <input type="text" name="lastName" class="inputFieldSize" placeholder="Enter last name" />
+            <input type="text" name="lastName" class="inputFieldSize" placeholder="Enter last name" value="<%= data.lastName%>"/>
           </div>
         </div>
         <div class="errorBox">
-          <span id="lastNameError"><%= lastNameMsg%></span>
+          <span id="lastNameError"><%= lastNameMsg %></span>
         </div>
         <div class="field">
           <span class="fieldName">Email</span>
           <div class="inputField">
-            <input type="text" name="email" class="inputFieldSize" placeholder="Enter email"/>
+            <input type="text" name="email" class="inputFieldSize" placeholder="Enter email" value="<%= data.email%>"/>
           </div>
         </div>
         <div class="errorBox">
-          <span id="emailError"><%= emailMsg%></span>
+          <span id="emailError"><%= emailMsg %></span>
         </div>
         <div class="field">
           <span class="fieldName">Password</span>
@@ -46,7 +48,7 @@
           </div>
         </div>
         <div class="errorBox">
-          <span id="passwordError"><%= passwordMsg%></span>
+          <span id="passwordError"><%= passwordMsg %></span>
         </div>
         <div class="field">
           <span class="fieldName">Confirm password</span>
@@ -55,33 +57,33 @@
           </div>
         </div>
         <div class="errorBox">
-          <span id="confirmPasswordError"><%= confirmPasswordMsg%></span>
+          <span id="confirmPasswordError"><%= confirmPasswordMsg %></span>
         </div>
         <div class="field">
           <span class="fieldName">Phone</span>
           <div class="inputField">
-            <input type="text" name="phone" class="inputFieldSize" onblur="phoneSplit()" placeholder="Enter phone number"/>
+            <input type="text" name="phone" class="inputFieldSize" onblur="phoneSplit()" placeholder="Enter phone number" value="<%= data.phone%>"/>
           </div>
         </div>
         <div class="errorBox">
-          <span id="phoneError"><%= phoneMsg%></span>
+          <span id="phoneError"><%= phoneMsg %></span>
         </div>
         <div class="addressField">
           <span class="fieldName">Delivery address</span>
           <div class="inputField">
-            <textarea name="permanentAddress" cols=20 rows=6 class="inputFieldSize"></textarea>
+            <textarea name="permanentAddress" cols=20 rows=6 class="inputFieldSize"><%= data.address %></textarea>
           </div>
         </div>
         <div class="errorBox">
-          <span id="permanentAddressError"><%= addressMsg%></span>
+          <span id="permanentAddressError"><%= addressMsg %></span>
         </div>
         <div class="field">
           <div class="allignCenter">
-            <input type="submit" class="submitButton registerButton" onclick="register()" id="regi" name="sub" value="Register"/>
+            <input type="button" class="submitButton registerButton" onclick="register()" id="regi" name="sub" value="Register"/>
           </div>
         </div>
       </form>
     </div>
-   <script src="/javascripts/validity.js"></script>
+    <script src="/javascripts/validity.js"></script>
   </body>
 </html>

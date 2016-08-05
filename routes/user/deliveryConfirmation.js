@@ -8,7 +8,6 @@ router.get('/', function(req, res) {
   var name = req.cookies.name;
   if(type === 'user') {
     controller.userController.getAddress(req,res).then(function(address){
-      console.log('deliveryaddr js', address);
       res.render('./user/deliveryConfirmation', {user: name, logout: 'Log out', address : address.address});
     });
   } else {

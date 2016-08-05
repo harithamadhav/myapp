@@ -15,26 +15,28 @@
           <input type="submit" name="searchButton" class="button" value="Search"/>
         </form>
       </div>
-      <div class="menuBar backgroundSaffron">
-        <% include menubar %>
-      </div>
+      <% include menubar %>
       <div class="list">
-        <% for (var i = 0; i< results.length; i++) {%>
+        <% for (var i = 0; i< results.length; i++) { %>
           <div class="itemHeight">
             <div class="leftFloat largeWidth">
+              <a href="/user/description/<%= results[i].id%>">
               <img src="/uploads/<%= results[i].image%>"/>
+              </a>
               <div>
-                <span><%= results[i].name%><br><%=results[i].description%><br><%results[i].offerDescription %></span>
+                <span><%= results[i].name %><br></span>
+                <span><%= results[i].description %><br></span>
+                <span><%= results[i].offerDescription %></span>
               </div>
             </div>
             <div class="floatRight">
-              <span>Cost : <%= results[i].actualCost%></span><br>
-              <span>Get it for : <%= results[i].offerCost%></span>
+              <span>Cost : <%= results[i].actualCost %></span><br>
+              <span>Get it for : <%= results[i].offerCost %></span>
             </div>
           </div>
         <% } %>
       </div>
-      </div>
+    </div>
     </div>
   </body>
 </html>
