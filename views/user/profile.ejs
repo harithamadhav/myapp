@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="errorBox">
-          <span id="firstNameError"><% = firstNameMsg %></span> 
+          <span id="firstNameError"><%= firstNameMsg %></span> 
         </div>
         <div class="field">
           <span class="fieldName">Last Name</span>
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="errorBox">
-          <span id="lastNameError"><% = lastNameMsg %></span>
+          <span id="lastNameError"><%= lastNameMsg %></span>
         </div>
         <div class="field">
           <span class="fieldName">Email</span>
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="errorBox">
-          <span id="emailError"><% = emailMsg %></span>
+          <span id="emailError"><%= emailMsg %></span>
         </div>
         <div class="field">
           <span class="fieldName">Password</span>
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="errorBox">
-          <span id="passwordError"><% = passwordMsg %></span>
+          <span id="passwordError"><%= passwordMsg %></span>
         </div>
         <div class="field">
           <span class="fieldName">Confirm password</span>
@@ -57,25 +57,25 @@
           </div>
         </div>
         <div class="errorBox">
-          <span id="confirmPasswordError"><% = confirmPasswordMsg %></span>
+          <span id="confirmPasswordError"><%= confirmPasswordMsg %></span>
         </div>
         <div class="field">
           <span class="fieldName">Phone</span>
           <div class="inputField">
-            <input type="text" name="phone" class="inputFieldSize" onblur="phoneSplit()" placeholder="Enter phone number" value="<% = user.phone %>"/>
+            <input type="text" name="phone" class="inputFieldSize" onblur="phoneSplit()" placeholder="Enter phone number" value="<%= user.phone %>"/>
           </div>
         </div>
         <div class="errorBox">
-          <span id="phoneError"><% = phoneMsg %></span>
+          <span id="phoneError"><%= phoneMsg %></span>
         </div>
         <div class="addressField">
           <span class="fieldName">Delivery address</span>
           <div class="inputField">
-            <textarea name="permanentAddress" cols=20 rows=6 class="inputFieldSize"><% = user.address %></textarea>
+            <textarea name="permanentAddress" cols=20 rows=6 class="inputFieldSize"><%= user.address %></textarea>
           </div>
         </div>
         <div class="errorBox">
-          <span id="permanentAddressError"><% = addressMsg %></span>
+          <span id="permanentAddressError"><%= addressMsg %></span>
         </div>
         <div class="field">
           <div class="allignCenter">

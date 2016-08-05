@@ -85,7 +85,7 @@ body::-webkit-scrollbar {
 
 .leftFloat {
   float: left;
-  width: 25%;
+  width: 21%;
 }
 
 .smallWidth {
@@ -100,6 +100,7 @@ body::-webkit-scrollbar {
 .grid {
   min-height: 260px;
   width: 100%;
+  overflow-y: auto;
 }
 
 img {
